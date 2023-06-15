@@ -1,15 +1,35 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <TopNavbar v-if="showTopNavbar"/>
+  <RouterView></RouterView>
+  <BottomNavbar/>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import BottomNavbar from './components/BottomNavbar.vue';
+import TopNavbar from './components/TopNavbar.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    TopNavbar,
+    BottomNavbar
+},
+  data() {
+    return {
+      showTopNavbar: true
+    };
+  },
+  created() {
+    this.$router.beforeEach((to, from, next) => {
+      if (to.path === '/notifications') {
+        // If the current route is '/notifications', hide the top navigation bar
+        this.showTopNavbar = false;
+      } else {
+        // For other routes, show the top navigation bar
+        this.showTopNavbar = true;
+      }
+      next();
+    });
   }
 }
 </script>
