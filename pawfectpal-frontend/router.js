@@ -5,7 +5,13 @@ import Notifications from './src/views/Notifications-view.vue';
 import Calendar from './src/views/Calendar-view.vue';
 import Groups from './src/views/Groups-view.vue';
 import Pets from './src/views/Pets-view.vue';
-
+import createGroup from './src/views/Create-group-view.vue';
+import createPets from './src/views/Create-pets-view.vue';
+import groupAddMember from './src/views/Group-add-member-view.vue';
+import groupAddPet from './src/views/Group-add-pet-view.vue';
+import groupPets from './src/views/Group-pets-view.vue';
+import indivPetView from './src/views/Indiv-pet-view.vue';
+import groupMember from './src/views/Group-member-view.vue';
 
 const routes = [
   {
@@ -35,8 +41,42 @@ const routes = [
   {
     path: '/pets',
     component: Pets,
-  }
+  },
 
+  {
+    path: '/createGroup',
+    component: createGroup,
+  },
+
+  {
+    path: '/createPets',
+    component: createPets,
+  },
+
+  {
+    path: '/groupAddMember',
+    component: groupAddMember,
+  },
+
+  {
+    path: '/groupAddPet',
+    component: groupAddPet,
+  },
+
+  {
+    path: '/groupPets',
+    component: groupPets,
+  },
+
+  {
+    path: '/groupMember',
+    component: groupMember,
+  },
+
+  {
+    path: '/indivPetView',
+    component: indivPetView,
+  },
 ];
 
 const router = createRouter({
