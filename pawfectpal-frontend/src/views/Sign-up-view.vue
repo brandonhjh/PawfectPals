@@ -33,7 +33,7 @@
                             <p class="text-center text-muted mt-2">By registering you are agreeing to let PawfectPals use your data for our service</p>
 
                             <p class="text-center">
-                                Already have an Account? <a href="">Login Here</a>
+                                Already have an Account? <a href="" @click="goToLogin">Login Here</a>
                             </p>
                         </div>
                     </form>
@@ -46,6 +46,12 @@
 export default {
     name: "Sign-up-view",
     components: {},
+
+    methods: {
+        goToLogin() {
+            this.$router.push('/login');
+        },
+    }
 };
 </script>
 <style lang="css">
