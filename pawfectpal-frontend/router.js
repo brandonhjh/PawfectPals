@@ -12,6 +12,8 @@ import groupAddPet from './src/views/Group-add-pet-view.vue';
 import groupPets from './src/views/Group-pets-view.vue';
 import indivPetView from './src/views/Indiv-pet-view.vue';
 import groupMember from './src/views/Group-member-view.vue';
+import signUp from './src/views/Sign-up-view.vue';
+import Login from './src/views/Login-view.vue';
 
 const routes = [
   {
@@ -77,6 +79,16 @@ const routes = [
     path: '/indivPetView',
     component: indivPetView,
   },
+
+  {
+    path: '/signup',
+    component: signUp,
+  },
+
+  {
+    path: '/login',
+    component: Login,
+  }
 ];
 
 const router = createRouter({
