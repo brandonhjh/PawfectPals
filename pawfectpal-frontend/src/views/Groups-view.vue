@@ -3,7 +3,7 @@
             <div class="row">
               <div class="col-5 p-2 ">
                 <div class="p-1 rounded text-center">
-                  <button type="button" class="btn btn-outline-success my-1 "> + Join Group </button>
+                  <button type="button" class="btn btn-outline-success my-1 "> + Join Group </button>        
                 </div>
               </div>
               <div class="col-2 ">
