@@ -3,14 +3,15 @@
             <div class="row">
               <div class="col-5 p-2 ">
                 <div class="p-1 rounded text-center">
-                  <button type="button" class="btn btn-outline-success my-1 "> + Join Group </button>        
+                  <button type="button" class="btn btn-outline-success my-1 "> + Join Group </button> 
+                  
                 </div>
               </div>
               <div class="col-2 ">
               </div>
               <div class="col-5 p-2">
                 <div class="p-1 rounded text-center">
-                  <button type="button" class="btn btn-outline-success my-1 "> + Create Group </button>
+                  <a type="button" class="btn btn-outline-success my-1" href="#" @click="goToCreateGroup">Create Group</a>
                 </div>
               </div>
             </div>
@@ -67,6 +68,13 @@
 export default {
   name: "Group-view",
   components: {},
+
+  methods:{
+    goToCreateGroup() {
+      console.log("otw to Create Groups page");
+      this.$router.push('/create-group');
+    },
+  }
 };
 </script>
 <style lang="css">
