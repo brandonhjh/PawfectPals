@@ -1,7 +1,7 @@
 <template lang="html">
     
-    <div>
-        
+    <div class="container text-dark">
+        Hello, create a group here
     </div>
 </template>
 <script>
