@@ -24,14 +24,14 @@
                 <img src="../assets/house.svg" alt="" class="d-flex flex-row justify-content-between align-items-center w-100 ">
                 
             </div>
-            <div class="col-3 my-5 text-light" style="display: flex; align-items: center;"><b>Hong Family</b></div>
+            <div class="col-3 my-5 text-light align-items-center d-flex " ><b>Hong Family</b></div>
             <div class="col-3 p-1 my-5 "></div>
-            <div class="col-2 p-1 my-2 " style="display: flex; align-items: center;">
+            <div class="col-2 p-1 my-2 align-items-center d-flex ">
                 <button type="button" class="btn btn-outline-light my-1 ">See Pets </button>
                     
                
             </div>
-            <div class="col-2 p-1 my-2 " style="display: flex; align-items: center;">
+            <div class="col-2 p-1 my-2 align-items-center d-flex">
                 
                     
                 <button type="button" class="btn btn-outline-light my-1">See members </button>
@@ -41,28 +41,7 @@
     
     </div>
 
-    <div class="container mr-2 pr-2 rounded rounded-top text-center bg-success">
-        <div class="row my-1">
-            <div class="col-1 p-1 my-5 ">
-                <img src="../assets/house.svg" alt="" class="d-flex flex-row justify-content-between align-items-center w-100 ">
-                
-            </div>
-            <div class="col-3 my-5 text-light" style="display: flex; align-items: center;"><b>Home</b></div>
-            <div class="col-3 p-1 my-5 "></div>
-            <div class="col-2 p-1 my-2 " style="display: flex; align-items: center;">
-                <button type="button" class="btn btn-outline-light my-1 ">See Pets </button>
-                    
-               
-            </div>
-            <div class="col-2 p-1 my-2 " style="display: flex; align-items: center;">
-                
-                    
-                <button type="button" class="btn btn-outline-light my-1">See members </button>
-            </div>
-           
-        </div>
     
-    </div>
 </template>
 <script>
 export default {
@@ -72,7 +51,7 @@ export default {
   methods:{
     goToCreateGroup() {
       console.log("otw to Create Groups page");
-      this.$router.push('/create-group');
+      this.$router.push('/createGroup');
     },
   }
 };
