@@ -1,9 +1,9 @@
 <template lang="html">
-    <div class="container my-3 ">
+    <div class="container-sm my-1">
             <div class="row">
               <div class="col-5 p-2 ">
                 <div class="p-1 rounded text-center">
-                  <button type="button" class="btn btn-outline-success my-1 "> + Join Group </button> 
+                  <button type="button" class="btn btn-outline-dark my-1 "> + Join Group </button> 
                   
                 </div>
               </div>
@@ -11,36 +11,32 @@
               </div>
               <div class="col-5 p-2">
                 <div class="p-1 rounded text-center">
-                  <a type="button" class="btn btn-outline-success my-1" href="#" @click="goToCreateGroup">Create Group</a>
+                  <a type="button" class="btn btn-outline-dark my-1" href="#" @click="goToCreateGroup">+ Create Group</a>
                 </div>
               </div>
             </div>
     </div>
 
-          
-    <div class="container mr-2 pr-2 rounded rounded-top text-center bg-success">
-        <div class="row my-1">
-            <div class="col-1 p-1 my-5 ">
-                <img src="../assets/house.svg" alt="" class="d-flex flex-row justify-content-between align-items-center w-100 ">
-                
+    <div class="container-sm mx-3 my-3 border rounded border-dark text-center bg-light">
+        <div class="row">
+            <div class="col-1 p-1 my-2 ">
+                <img src="../assets/house.svg" alt="" class=" align-items-center w-100  ">
             </div>
-            <div class="col-3 my-5 text-light align-items-center d-flex " ><b>Hong Family</b></div>
-            <div class="col-3 p-1 my-5 "></div>
-            <div class="col-2 p-1 my-2 align-items-center d-flex ">
-                <button type="button" class="btn btn-outline-light my-1 ">See Pets </button>
-                    
-               
-            </div>
-            <div class="col-2 p-1 my-2 align-items-center d-flex">
-                
-                    
-                <button type="button" class="btn btn-outline-light my-1">See members </button>
-            </div>
-           
+            <div class="col-5 my-3 text-dark align-items-center d-flex " ><p>Hong Family</p></div>
+            
+        </div>
+        <div class="row">
+          <div class="col-1 "></div>
+          <div class="col-5 my-2 align-items-center ">
+            <button type="button" class="btn btn-outline-dark my-1 ">See Pets </button>
+          </div>
+          <div class="col-5 my-2 align-items-center">
+
+            <button type="button" class="btn btn-outline-dark my-1">See members </button>
+          </div>
         </div>
     
     </div>
-
     
 </template>
 <script>
@@ -48,12 +44,12 @@ export default {
   name: "Group-view",
   components: {},
 
-  methods:{
+  methods: {
     goToCreateGroup() {
       console.log("otw to Create Groups page");
-      this.$router.push('/createGroup');
+      this.$router.push("/createGroup");
     },
-  }
+  },
 };
 </script>
 <style lang="css">
