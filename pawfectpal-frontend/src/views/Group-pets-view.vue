@@ -7,7 +7,7 @@
                 </h1>
             </div>
             <div class="col-8 align-self-end p-0 ps-1">
-                <p class ="h2 m-0 mb-1 pb-2 text-black-50">
+                <p class ="h2 fs-5 m-0 mb-1 pb-2 text-black-50">
                     Pets
                 </p>
             </div>
