@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import 'bootstrap/dist/js/bootstrap.js';
+// import 'bootstrap/dist/js/bootstrap.js';
 export default {
   name: "Calendar-view",
   components: {},
