@@ -1,6 +1,23 @@
 <template lang="html">
-    <div>
-        <h1>here are all my animals</h1>
+    <div class="container mt-4">
+        <div class="row mx-1">
+            <div class="col px-1">
+                <h1 class="display-1">
+                    All Pets
+                </h1>
+            </div>
+        </div>
+
+        <div class="row bg-light m-1 mb-3 rounded">
+            <div class="col-3 align-self-center text-center"> 
+                <img src="https://images.squarespace-cdn.com/content/v1/58b4791ad2b857c893179e34/1537971642021-LHW76T7O8JG0M4GLTSTP/IMG_2818.jpg?format=1000w" class="w-75 rounded-circle py-3"/>
+                <br>
+            </div>
+            <div class="col-9 my-2 p-0 align-self-center text-start">
+                <p class="h5 mb-1 fw-normal">Leo</p>
+                <p class="m-0 fw-light">Group : Home </p> 
+            </div>
+        </div>
     </div>
 </template>
 <script>

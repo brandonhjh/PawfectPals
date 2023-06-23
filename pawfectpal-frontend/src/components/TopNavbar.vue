@@ -17,6 +17,11 @@
             <img src="../assets/bell.svg" alt="" @click="goToNotifications">
         </a>
         </li>
+        <li class="nav-item">
+          <a href="#">
+            <img src="../assets/box-arrow-right.svg" alt="" @click="$store.dispatch('logout')">
+          </a>
+        </li>
       </ul>
     </div>
   </nav>

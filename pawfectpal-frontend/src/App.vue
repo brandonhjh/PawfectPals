@@ -1,13 +1,14 @@
 <template>
-  <TopNavbar v-if="showTopNavbar"/>
+  <TopNavbar v-if="$store.state.user && showTopNavbar"/>
   <RouterView></RouterView>
-  <BottomNavbar/>
+  <BottomNavbar v-if="$store.state.user"/>
 </template>
 
 <script>
 import BottomNavbar from './components/BottomNavbar.vue';
 import TopNavbar from './components/TopNavbar.vue';
-
+import { onBeforeMount } from 'vue';
+import {useStore} from 'vuex'
 export default {
   name: 'App',
   components: {
@@ -30,6 +31,18 @@ export default {
       }
       next();
     });
+  },
+
+  setup() {
+    const store = useStore()
+
+    onBeforeMount(()=> {
+      store.dispatch('fetchUser')
+    })
+
+    return {
+      user: store.state.user
+    }
   }
 }
 </script>
