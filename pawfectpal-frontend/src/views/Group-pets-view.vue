@@ -1,13 +1,11 @@
 <template lang="html">
     <div class="container mt-4">
         <div class="row mx-1">
-            <div class="col-4 px-1">
+            <div class="col-auto px-1">
                 <h1 class="display-1">
                     Home 
                 </h1>
-            </div>
-            <div class="col-8 align-self-end p-0 ps-1">
-                <p class ="h2 fs-5 m-0 mb-1 pb-2 text-black-50">
+                <p class ="h2 fs-5 mb-1 pb-2 text-black-50">
                     Pets
                 </p>
             </div>
