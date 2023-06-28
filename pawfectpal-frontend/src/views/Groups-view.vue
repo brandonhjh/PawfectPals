@@ -1,43 +1,47 @@
 <template lang="html">
-    <div class="container-sm my-1">
-            <div class="row">
-              <div class="col-5 p-2 ">
-                <div class="p-1 rounded text-center">
-                  <button type="button" class="btn btn-outline-dark my-1 "> + Join Group </button> 
-                  
-                </div>
-              </div>
-              <div class="col-2 ">
-              </div>
-              <div class="col-5 p-2">
-                <div class="p-1 rounded text-center">
-                  <a type="button" class="btn btn-outline-dark my-1" href="#" @click="goToCreateGroup">+ Create Group</a>
-                </div>
-              </div>
-            </div>
+  <div class="container my-1">
+    <div class="row">
+      <div class="col-5">
+        <div class="rounded text-center">
+          <button type="button" class="btn my-1">+ Join Group</button>
+        </div>
+      </div>
+      <div class="col-2"></div>
+      <div class="col-5 align-self-end">
+        <div class="rounded">
+          <a type="button" class="btn my-1" href="#" @click="goToCreateGroup"
+            >+ Create Group</a
+          >
+        </div>
+      </div>
     </div>
 
-    <div class="container-sm mx-3 my-3 border rounded border-dark text-center bg-light">
-        <div class="row">
-            <div class="col-1 p-1 my-2 ">
-                <img src="../assets/house.svg" alt="" class=" align-items-center w-100  ">
-            </div>
-            <div class="col-5 my-3 text-dark align-items-center d-flex " ><p>Hong Family</p></div>
-            
+    <div class="row m-1 border rounded-4">
+      <div class="col-7 d-flex justify-content-left">
+        <div class="d-flex align-items-center">
+          <img src="../assets/house.svg" alt="" class="" />
+          <p class="mb-0">Hong Family</p>
         </div>
-        <div class="row">
-          <div class="col-1 "></div>
-          <div class="col-5 my-2 align-items-center ">
-            <button type="button" class="btn btn-outline-dark my-1 ">See Pets </button>
-          </div>
-          <div class="col-5 my-2 align-items-center">
+      </div>
 
-            <button type="button" class="btn btn-outline-dark my-1">See members </button>
-          </div>
+      <div class="col-5 align-items-center py-1" role="group">
+        <div class="btn btn-group-vertical">
+          <button
+            type="button"
+            class="btn rounded-pill btn-outline-dark btn-sm w-100"
+          >
+            See Pets
+          </button>
+          <button
+            type="button"
+            class="btn rounded-pill btn-outline-dark btn-sm w-100 mt-1"
+          >
+            See members
+          </button>
         </div>
-    
+      </div>
     </div>
-    
+  </div>
 </template>
 <script>
 export default {
@@ -52,5 +56,4 @@ export default {
   },
 };
 </script>
-<style lang="css">
-</style>
+<style lang="css"></style>

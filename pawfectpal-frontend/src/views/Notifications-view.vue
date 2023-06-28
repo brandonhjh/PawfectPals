@@ -1,85 +1,94 @@
 <template lang="html">
-  <div>
-    <h3 class="p-1 text-center text decoration underline">Notifications</h3 >
+  <nav class="navbar nav-bar-expand-lg">
+    <div class="container">
+      <div class="col-2 text-start">
+        <div class="navbar-nav" @click="goToHome">&lt; Back</div>
+      </div>
+      <div class="col-8 d-flex justify-content-center align-items-center">
+        <h3>Notifications</h3>
+      </div>
+      <div class="col-2 text-end">Clear</div>
+    </div>
+  </nav>
+
+  <div class="container bg-white text-start">
+    <h5 class="col px-2">Today</h5>
   </div>
 
-  <section class="section-50 ">
-    <div class="container bg-white text-start ">
-      <h5 class="col-sm-12 my-1">Today <i class="fa fa-bell text-muted"></i></h5>
+  <div class="container">
+    <div class="row mx-0 pt-1 mb-1 rounded-4 border border-muted">
+      <div class="col-8">
+        <div class="bg-white text-start">
+          <b>Leo Medical Appointment </b>
+        </div>
+        <p class="text-muted text-start mb-1">
+          Send for medical appt, rmb to bring medicine
+        </p>
+      </div>
+      <div class="col-4 d-flex justify-content-end">
+        <div class="d-flex align-items-center">
+          <div class="text-end">
+            <small>8:00 pm</small>
+          </div>
+        </div>
+      </div>
     </div>
 
-    
-      
-        
-          <div class="container my-1">
-            <div class="row rounded border border-muted bg-white ">
-              <div class="col-8 p-2">
-                <div class="p-1 bg-white text-start  ">
-                  <b>Leo Medical Appointment </b>
-                </div>
-                <p class="text-muted text-start">
-                  Send for medical appt, rmb to bring medicine
-                </p>
-              </div>
-              <div class="col-4 ">
-                <div class="p-2 my-1 bg-white text-dark text-end "><small>8:00 pm</small></div>
-              </div>
-            </div>
-
+    <div class="row mx-0 pt-1 mb-1 rounded-4 border border-muted">
+      <div class="col-8">
+        <div class="bg-white text-start">
+          <b>Leo Medical Appointment </b>
+        </div>
+        <p class="text-muted text-start mb-1">
+          Send for medical appt, rmb to bring medicine
+        </p>
+      </div>
+      <div class="col-4 d-flex justify-content-end">
+        <div class="d-flex align-items-center">
+          <div class="text-end">
+            <small>8:00 pm</small>
           </div>
-        
-          <div class="container my-1">
-            <div class="row rounded border border-muted bg-white ">
-              <div class="col-8 p-2">
-                <div class="p-1 bg-white text-start  ">
-                  <b>Milo Medical Appointment </b>
-                </div>
-                <p class="text-muted text-start">
-                  Send for medical appt, rmb to bring medicine
-                </p>
-              </div>
-              <div class="col-4 ">
-                <div class="p-2 my-1 bg-white text-dark text-end "><small>8:00 pm</small></div>
-              </div>
-            </div>
-
-          </div>
-      
-    
-
-    <div class="container bg-8b9d83 text-start">
-      <h5 class="col-sm-12 my-1">Yesterday <i class="fa fa-bell text-muted"></i></h5>
+        </div>
+      </div>
     </div>
+  </div>
 
-    
-          <div class="container my-1 ">
-            <div class="row rounded border border-muted bg-white ">
-              <div class="col-8 p-2">
-                <div class="p-1 bg-white text-dark text-start">
-                  <b>Zorro Vet Appointment</b>
-                </div>
-                <p class="text-muted text-start">Brighton Vet Clinic @Serangoon</p>
-              </div>
-              <div class="col-4">
-                <div class="p-2 bg-white text-dark text-end"><small>7:00 pm</small></div>
-              </div>
-            </div>
+  <div class="container text-start">
+    <h5 class="col px-2">Yesterday</h5>
+  </div>
 
+  <div class="container">
+    <div class="row mx-0 pt-1 mb-1 rounded-4 border border-muted">
+      <div class="col-8">
+        <div class="bg-white text-start">
+          <b>Leo Medical Appointment </b>
+        </div>
+        <p class="text-muted text-start mb-1">
+          Send for medical appt, rmb to bring medicine
+        </p>
+      </div>
+      <div class="col-4 d-flex justify-content-end">
+        <div class="d-flex align-items-center">
+          <div class="text-end">
+            <small>8:00 pm</small>
           </div>
-        
-
-    <div class="text-center">
-      <a href="#!" class="dark-link">Load more activity</a>
+        </div>
+      </div>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
 export default {
   name: "Notifications-view",
   components: {},
+  methods: {
+    goToHome() {
+      console.log("Otw to home page");
+      this.$router.push("/");
+    },
+  },
 };
 </script>
 
-<style lang="css">
-</style>
+<style lang="css"></style>
