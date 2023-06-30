@@ -1,54 +1,40 @@
 <template lang="html">
-    
-    <div class="container-fluid  ">
-        
-        <div class="text-light"> . </div>
-        <div class="text-light"> . </div>
-        <div class="text-light"> . </div>
-        <div class="text-light"> . </div>
-        <div class="text-light"> . </div>
-
-        <div class="row mt-6 p-6 ">
-            <div class="col-9 pt-6 rounded text-dark text-center"> Group ID      
-            </div>
-        </div>     
-        <div class="row">
-            
-            <div class=" col-4 container p-1 my-1 text-dark text-center ">
-                <div class="form-outline mb-4">
-                    <input type="email" class="form-control form-control-sm text-center"
-                     placeholder="Enter group ID" />
-                    
-                </div>
-             </div>
+  <div class="container my-5">
+    <div class="container border rounded-4 pt-4 pb-3">
+      <div class="mb-3">
+        <label for="groupId" class="form-label">Group ID:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="groupId"
+          placeholder="Enter Group Id"
+        />
+      </div>
+      <div class="mb-3 pb-5">
+        <label for="groupName" class="form-label">Group Name:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="groupName"
+          placeholder="Enter Group Name"
+        />
+      </div>
+      <div class="container mt-5 pt-5">
+        <div class="row mt-5 pt-5">
+          <div class="col"></div>
+          <div class="col d-flex justify-content-center">
+            <button
+              type="submit"
+              class="btn btn-outline-dark rounded-pill btn-sm"
+            >
+              Save
+            </button>
+          </div>
+          <div class="col"></div>
         </div>
-
-        <div class="row mt-6 p-6">
-            <div class="col-9 mt-6 rounded text-dark text-center">Group Name    
-            </div>
-        </div>     
-        
-        <div class="row ">
-            
-            <div class=" col-4 p-1 container text-dark text-center ">
-                <div class="form-outline mb-4">
-                    <input type="email" class="form-control form-control-sm text-center"
-                     placeholder="Enter group name" />
-                    
-                </div>
-             </div>
-        </div>
-        
-        <div class="row my-1">
-            <div class="rounded text-center">
-                  <div type="button" class="btn btn-outline-dark my-1">Save</div>
-                </div>
-
-        </div>
-
-        
-        
+      </div>
     </div>
+  </div>
 </template>
 <script>
 export default {
@@ -56,5 +42,4 @@ export default {
   components: {},
 };
 </script>
-<style lang="css">
-</style>
+<style lang="css"></style>
