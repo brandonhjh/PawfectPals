@@ -1,7 +1,7 @@
 <template lang="html">
-  <div class="container my-5">
-    <div class="container border rounded-4 pt-4 pb-3">
-      <div class="mb-3">
+  <div class="container my-5 ">
+    <div class="container border rounded-4 pt-4 pb-3 ">
+      <div class="mb-3 mt-5 pt-5 ">
         <label for="groupId" class="form-label">Group ID:</label>
         <input
           type="text"
@@ -10,7 +10,7 @@
           placeholder="Enter Group Id"
         />
       </div>
-      <div class="mb-3 pb-5">
+      <div class="mb-3 pb-1">
         <label for="groupName" class="form-label">Group Name:</label>
         <input
           type="text"
