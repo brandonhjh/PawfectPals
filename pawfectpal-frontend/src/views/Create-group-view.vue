@@ -25,7 +25,7 @@
           <div class="col d-flex justify-content-center">
             <button
               type="submit"
-              class="btn btn-outline-dark rounded-pill btn-sm"
+              class="btn btn-outline-light rounded-pill btn-sm"
             >
               Save
             </button>
@@ -42,4 +42,12 @@ export default {
   components: {},
 };
 </script>
-<style lang="css"></style>
+
+<style lang="css">
+.container.border.rounded-4.pt-4.pb-3 {
+  color: white;
+  background-color:#8B9D83;
+}
+
+
+</style>
