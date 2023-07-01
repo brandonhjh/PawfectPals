@@ -5,18 +5,18 @@
         </div> 
         <div class="row mx-1 mb-2 bg-light">
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Pet Name" aria-label="Pet Name" aria-describedby="basic-addon1">
+                <input type="text" class="form-control" id="petName" placeholder="Pet Name">
             </div>
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Birthday" aria-label="Birthday">
-                <input type="text" class="form-control input-space" placeholder="Age" aria-label="Age">
+                <input type="text" class="form-control" id="petBirthday" placeholder="Birthday">
+                <input type="text" class="form-control input-space" placeholder="Age">
             </div>
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Breed" aria-label="Breed" aria-describedby="basic-addon1">
+                <input type="text" class="form-control" id="petBreed" placeholder="Breed">
             </div>
             <div class="input-group mb-3">
-                <label class="input-group-text">Group</label>
-                <select class="form-select" id="group">
+                <label class="input-group-text"><img src="../assets/people.svg" alt="" class="pe-2">Group</label>
+                <select class="form-select" id="petGroup">
                     <option selected>-No Group-</option>
                     <option value="Home">Home</option>
                     <option value="Aunt">Aunt</option>
@@ -24,7 +24,7 @@
             </div>
             <div class="mb-3">
                 <label class="form-label ps-1">Special Remarks</label>
-                <textarea class="form-control" id="specialRemarks" rows="3"></textarea>
+                <textarea class="form-control" id="petRemarks" rows="3"></textarea>
             </div>
         </div>
         <div class = "row">

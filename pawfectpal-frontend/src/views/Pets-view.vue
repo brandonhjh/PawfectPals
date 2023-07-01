@@ -41,7 +41,7 @@ export default {
   methods: {
     goToAddPet() {
       console.log("otw to add pet");
-      this.$router.push("groupAddPet");
+      this.$router.push("createpets");
     },
   },
 };
