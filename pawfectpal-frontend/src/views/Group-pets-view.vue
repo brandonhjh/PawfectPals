@@ -2,10 +2,10 @@
     <div class="container mt-4">
         <div class="row mx-1">
             <div class="col-auto px-1">
-                <h1 class="display-1">
+                <h1 id="font-dark-green" class="display-1">
                     Home 
                 </h1>
-                <p class ="h2 fs-5 mb-1 pb-2 text-black-50">
+                <p  id="font-dark-green" class ="h2 fs-5 mb-1 pb-2 text-black-50">
                     Pets
                 </p>
             </div>

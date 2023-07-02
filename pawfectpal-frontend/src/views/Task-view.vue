@@ -1,7 +1,7 @@
 <template lang="html">
     <div class="container mt-4">
         <div class="row">
-            <p class="display-2 fs-1 text-center">New Task</p>
+            <p id="font-dark-green"  class="display-2 fs-1 text-center">New Task</p>
         </div>
         <div id="green-banner"  class="row mx-1 rounded-top">
             <div class="col-auto align-self-start p-0">

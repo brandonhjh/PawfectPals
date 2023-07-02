@@ -2,10 +2,10 @@
     <div class="container mt-4">
         <div class="row mx-1">
             <div class="col-auto px-1">
-                <h1 class="display-1">
+                <h1 id="font-dark-green" class="display-1">
                     Home 
                 </h1>
-                <p class ="h2 fs-5 mb-1 pb-2 text-black-50">
+                <p id="font-dark-green" class ="h2 fs-5 mb-1 pb-2 ">
                     Members
                 </p>
             </div>
@@ -24,7 +24,7 @@
             <div class="col">
                 <div class="position-absolute start-50 translate-middle mt-2">
                     <img data-v-391f24cb="" src="/img/plus-circle.2992868b.svg" alt="" class="">
-                    <small class="ps-1">Add Member</small> 
+                    <small id="font-dark-green" class="ps-1">Add Member</small> 
                 </div>
             </div>
         </div>
