@@ -3,19 +3,19 @@
         <div class="row">
             <p class="display-2 fs-1 text-center">New Task</p>
         </div>
-        <div class="row mx-1 bg-light rounded-top">
+        <div id="green-banner"  class="row mx-1 rounded-top">
             <div class="col-auto align-self-start p-0">
                 <div class="mb-1 pb-2 ps-3 float-end">
-                    <button type="button" class="btn btn-sm mt-2 py-1 px-2">Cancel</button>
+                    <button type="button" class="btn btn-sm mt-2 py-1 px-2 text-light">Cancel</button>
                 </div>
             </div>
             <div class="col align-self-end p-0">
                 <div class="mb-1 pb-2 pe-3 float-end">
-                    <button type="button" class="btn btn-sm rounded-pill btn-outline-dark mt-2 py-1 px-2">Add</button>
+                    <button type="button" class="btn btn-sm rounded-pill btn-outline-light mt-2 py-1 px-2">Add</button>
                 </div>
             </div>
         </div> 
-        <div class="row mx-1 mb-2 pb-2 bg-light">
+        <div  id="green-banner"  class="row mx-1 mb-2 pb-2 ">
             <div class="input-group">
                 <input type="text" class="form-control rounded-bottom-0" id="taskTitle" placeholder="Title">
             </div>
