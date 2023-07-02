@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-5">
         <div class="rounded text-center">
-          <button type="button" class="btn my-1" @click="goToGroupAddMember">
+          <button type="button" id="font-dark-green"  class="btn my-1" @click="goToGroupAddMember">
             + Join Group
           </button>
         </div>
@@ -11,7 +11,7 @@
       <div class="col-2"></div>
       <div class="col-5 align-self-end">
         <div class="rounded">
-          <a type="button" class="btn my-1" href="#" @click="goToCreateGroup"
+          <a type="button" id="font-dark-green" class="btn my-1" href="#" @click="goToCreateGroup"
             >+ Create Group</a
           >
         </div>

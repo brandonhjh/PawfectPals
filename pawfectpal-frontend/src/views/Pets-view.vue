@@ -2,7 +2,7 @@
   <div class="container mt-4">
     <div class="row mx-1">
       <div class="col px-1">
-        <h1 class="display-1">All Pets</h1>
+        <h1 id="font-dark-green" class="display-1">All Pets</h1>
       </div>
     </div>
 
@@ -28,7 +28,7 @@
             alt=""
             class=""
           />
-          <small class="ps-1" @click="goToAddPet">Add New Pet</small>
+          <small id="font-dark-green" class="ps-1" @click="goToAddPet">Add New Pet</small>
         </div>
       </div>
     </div>
