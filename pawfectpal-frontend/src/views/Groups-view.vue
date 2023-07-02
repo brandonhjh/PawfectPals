@@ -18,7 +18,7 @@
       </div>
     </div>
 
-    <div class="row m-1 border rounded-4">
+    <div id="green-banner" class=" row m-1 border rounded-4">
       <div class="col-7 d-flex justify-content-left">
         <div class="d-flex align-items-center">
           <img src="../assets/house.svg" alt="" class="" />
@@ -30,14 +30,14 @@
         <div class="btn btn-group-vertical">
           <button
             type="button"
-            class="btn rounded-pill btn-outline-dark btn-sm w-100"
+            class="btn rounded-pill btn-outline-light btn-sm w-100"
             @click="goToGroupPets"
           >
             See Pets
           </button>
           <button
             type="button"
-            class="btn rounded-pill btn-outline-dark btn-sm w-100 mt-1"
+            class="btn rounded-pill btn-outline-light btn-sm w-100 mt-1"
             @click="goToGroupMember"
           >
             See members
@@ -75,4 +75,6 @@ export default {
   },
 };
 </script>
-<style lang="css"></style>
+<style lang="css">
+
+</style>

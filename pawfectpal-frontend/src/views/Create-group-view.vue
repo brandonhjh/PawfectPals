@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="container my-5 " >
-    <div id="group-bg" class="container border rounded-4 pt-4 pb-3 " >
+    <div id="green-banner" class="container border rounded-4 pt-4 pb-3 " >
       <div class="mb-3 mt-5 pt-5 ">
         <label for="groupId" class="form-label">Group ID:</label>
         <input
@@ -44,10 +44,4 @@ export default {
 </script>
 
 <style lang="css">
-#group-bg {
-  color: white;
-  background-color:#8B9D83;
-}
-
-
 </style>
