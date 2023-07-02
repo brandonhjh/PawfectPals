@@ -1,29 +1,29 @@
 <template>
-  <nav class="navbar fixed-bottom navbar-light bg-light">
+  <nav id="green-banner" class="navbar fixed-bottom navbar-light ">
     <div class="container">
       <div class="navbar-nav d-flex flex-row justify-content-between align-items-center w-100">
-        <a class="nav-link d-flex flex-column align-items-center" href="#" @click="goToHome">
-          <img src="../assets/house.svg" alt="" class="mb-1">
+        <a class="nav-link d-flex flex-column align-items-center text-white" href="#" @click="goToHome">
+          <img src="../assets/house.svg" alt="" class="mb-1 color-white ">
         <small>Home</small>
         </a>
 
-        <a class="nav-link d-flex flex-column align-items-center" href="#" @click="goToCalendar">
+        <a class="nav-link d-flex flex-column align-items-center text-white" href="#" @click="goToCalendar">
           <img src="../assets/calendar.svg" alt="" class="mb-1">
           <small>Calendar</small>
         </a>
 
-        <a class="nav-link d-flex flex-column align-items-center" href="#" @click="goToTask">
+        <a class="nav-link d-flex flex-column align-items-center text-white" href="#" @click="goToTask">
         <img src="../assets/plus-circle.svg" alt="" class="mb-1">
         <small>Task</small>
         </a>
 
-        <a class="nav-link d-flex flex-column align-items-center" href="#" @click="goToPets">
+        <a class="nav-link d-flex flex-column align-items-center text-white" href="#" @click="goToPets">
         <img src="../assets/Cat.svg" alt="" class="mb-1">
         <small>Pets</small>
         </a>
 
-        <a class="nav-link d-flex flex-column align-items-center" href="#" @click="goToGroups">
-        <img src="../assets/people.svg" alt="" class="mb-1">
+        <a class="nav-link d-flex flex-column align-items-center text-white " href="#" @click="goToGroups">
+        <img src="../assets/people.svg" alt=""  class="mb-1">
         <small>Groups</small>
         </a>
 

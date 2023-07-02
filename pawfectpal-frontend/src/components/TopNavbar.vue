@@ -1,12 +1,12 @@
 <template>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav id="green-banner" class="navbar navbar-expand-lg navbar-light ">
     <div class="container">
       <!-- Brand/logo -->
         <div class="navbar-nav ml-auto">
             <img src="../assets/bell.svg" alt="" style="opacity: 0;">
         </div>
       <!-- Centered text -->
-      <div class="navbar-text mx-auto" @click="goToHome">
+      <div class="navbar-text mx-auto text-white" @click="goToHome">
       PawfectPals
       </div>
       
