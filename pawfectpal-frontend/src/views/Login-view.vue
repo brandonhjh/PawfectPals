@@ -16,7 +16,7 @@
             </div>
 
             <div class="d-grid">
-              <button type="submit" class="btn btn-success">Login</button>
+              <button type="submit" id="green-banner" class="btn">Login</button>
               <p class="text-center">
                 Don't have an account?
                 <a href="" @click="goToSignUp">Sign up now</a>
