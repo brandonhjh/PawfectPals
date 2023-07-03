@@ -3,7 +3,7 @@
     <div class="container">
       <div class="navbar-nav d-flex flex-row justify-content-between align-items-center w-100">
         <a class="nav-link d-flex flex-column align-items-center text-white" href="#" @click="goToHome">
-          <img src="../assets/house.svg" alt="" class="mb-1 color-white ">
+          <img src="../assets/house.svg" alt="" class="mb-1">
         <small>Home</small>
         </a>
 
