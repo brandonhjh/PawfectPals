@@ -23,7 +23,7 @@
         <div class = "row">
             <div class="col">
                 <div class="position-absolute start-50 translate-middle mt-2">
-                    <img data-v-391f24cb="" src="/img/plus-circle.2992868b.svg" alt="" class="">
+                    <img data-v-391f24cb="" src="/img/plus-circle.2992868b.svg" alt="" class="fill-success">
                     <small class="ps-1">Add Pet</small> 
                 </div>
             </div>
