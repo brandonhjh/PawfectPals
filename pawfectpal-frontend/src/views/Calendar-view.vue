@@ -1,20 +1,31 @@
 <template lang="html">
-    <div>
-        <h1>calendar view is here</h1>
-    </div>
+  <div class="m-2 mb-0 pt-2">
+    <FullCalendar :options="calendarOptions" />
+  </div>
 </template>
 
 <script>
+import FullCalendar from "@fullcalendar/vue3";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import listPlugin from "@fullcalendar/list";
+import interactionPlugin from "@fullcalendar/interaction";
+
 export default {
-  name: "Calendar-view",
-  components: {},
-  
+  components: {
+    FullCalendar, // make the <FullCalendar> tag available
+  },
+  data: function () {
+    return {
+      calendarOptions: {
+        plugins: [dayGridPlugin, interactionPlugin, timeGridPlugin, listPlugin],
+        initialView: "dayGridMonth",
+        weekends: true,
+        events: [{ title: "", start: new Date("July 17, 2023 03:24:00") }],
+        themeSystem: "bootstrap5",
+      },
+    };
+  },
 };
 </script>
-<style>
-
-
-
-</style>
-
-
+<style></style>
