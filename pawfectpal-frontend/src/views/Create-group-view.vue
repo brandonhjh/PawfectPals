@@ -1,6 +1,6 @@
 <template lang="html">
-  <div class="container my-5 ">
-    <div class="container border rounded-4 pt-4 pb-3 ">
+  <div class="container my-5 " >
+    <div id="green-banner" class="container border rounded-4 pt-4 pb-3 " >
       <div class="mb-3 mt-5 pt-5 ">
         <label for="groupId" class="form-label">Group ID:</label>
         <input
@@ -25,7 +25,7 @@
           <div class="col d-flex justify-content-center">
             <button
               type="submit"
-              class="btn btn-outline-dark rounded-pill btn-sm"
+              class="btn btn-outline-light rounded-pill btn-sm"
             >
               Save
             </button>
@@ -42,4 +42,6 @@ export default {
   components: {},
 };
 </script>
-<style lang="css"></style>
+
+<style lang="css">
+</style>

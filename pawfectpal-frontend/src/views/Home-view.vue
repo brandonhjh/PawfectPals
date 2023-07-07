@@ -2,11 +2,11 @@
   <div class="container mt-4">
     <div class="row mx-1">
       <div class="col-4 px-1">
-        <h1 class="display-1">Today</h1>
+        <h1 id="font-dark-green" class="display-1">Today</h1>
       </div>
       <div class="col-5 align-self-end p-0">
         <p class="h5 m-0 mb-1 pb-2">
-          <small class="text-muted">19 June, 2023</small>
+          <small id="font-dark-green" class="text-muted">19 June, 2023</small>
         </p>
       </div>
       <div class="col-3 align-self-end p-0">
@@ -17,12 +17,12 @@
             alt=""
             class="mb-1"
           />
-          <small class="ps-1" @click="goToTask">Add Task</small>
+          <small id="font-dark-green" class="ps-1" @click="goToTask">Add Task</small>
         </div>
       </div>
     </div>
 
-    <div class="row bg-light m-1 rounded-top">
+    <div id="green-banner" class="row m-1 rounded-3">
       <div class="col-2 align-self-center">8:00</div>
       <div class="col-2 align-self-center text-center">
         <img
@@ -46,7 +46,7 @@
         </div>
         <div class="row">
           <div class="col align-self-end mb-1">
-            <button type="button" class="btn btn-outline-dark btn-sm py-0 px-1">
+            <button type="button" class="btn btn-outline-light btn-sm py-0 px-1">
               more
             </button>
           </div>
