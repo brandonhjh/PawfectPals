@@ -252,9 +252,9 @@ app.put('/PUT/api/joinGroup/:groupId', (req, res) => {
   const groupId = req.params.groupId;
   const { username } = req.body;
 
-  const groupsRef = ref(database, 'groups');
-  const groupRef = child(groupsRef, groupId);
-  set(groupRef, { [username]: true })
+  const groupsRef = ref(database, `groups/${groupId}`);
+  const userRef = child(groupsRef, username);
+  set(userRef, true)
     .then(() => {
       res.json({ message: 'User joined the group successfully' });
     })
