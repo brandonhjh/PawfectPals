@@ -224,6 +224,39 @@ app.post('/POST/api/addGroups', (req, res) => {
     });
 });
 
+// :petName is a URL parameter representing the name of the pet being edited
+// PUT EDIT PET in the database
+app.put('/PUT/api/editPet/:petName', (req, res) => {
+  const petName = req.params.petName;
+  const updatedPet = req.body;
+
+  const petRef = ref(database, 'pets', petName);
+  set(petRef, updatedPet)
+    .then(() => {
+      res.json({ message: 'Pet updated successfully' });
+    })
+    .catch((error) => {
+      console.error('Error updating pet:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    });
+});
+
+// PUT JOIN GROUP in the database
+app.put('/PUT/api/joinGroup/:groupId', (req, res) => {
+  const groupId = req.params.groupId;
+  const { username } = req.body;
+
+  const groupsRef = ref(database, `groups/${groupId}`);
+  set(groupsRef, { [username]: true })
+    .then(() => {
+      res.json({ message: 'User joined the group successfully' });
+    })
+    .catch((error) => {
+      console.error('Error joining the group:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    });
+});
+
 
 const port = 3000;
 app.listen(port, () => {
