@@ -4,7 +4,7 @@ const cors = require('cors');
 const firebase = require('firebase/app');
 require('firebase/database');
 
-const { getDatabase, onValue, ref, set: databaseSet, push, set } = require('firebase/database');
+const { getDatabase, onValue, ref, set: databaseSet, push, set, child } = require('firebase/database');
 
 const app = express();
 
@@ -181,10 +181,12 @@ app.get('/GET/api/groups', (req, res) => {
 
 // POST TASK to the database
 app.post('/POST/api/addTask', (req, res) => {
-  const task = req.body;
+  const taskKey = req.body.taskKey; // Assuming the custom key is provided in the request body
+  const taskData = req.body.taskData; // Assuming the task data is provided in the request body
+
   const tasksRef = ref(database, 'tasks');
-  const newTaskRef = push(tasksRef);
-  set(newTaskRef, task)
+  const taskRef = child(tasksRef, taskKey);
+  set(taskRef, taskData)
     .then(() => {
       res.json({ message: 'Task created successfully' });
     })
@@ -194,12 +196,15 @@ app.post('/POST/api/addTask', (req, res) => {
     });
 });
 
+
 // POST PET to the database
 app.post('/POST/api/addPet', (req, res) => {
-  const pet = req.body;
+  const petKey = req.body.petKey; // Assuming the custom key is provided in the request body
+  const petData = req.body.petData; // Assuming the pet data is provided in the request body
+
   const petsRef = ref(database, 'pets');
-  const newPetRef = push(petsRef);
-  set(newPetRef, pet)
+  const petRef = child(petsRef, petKey);
+  set(petRef, petData)
     .then(() => {
       res.json({ message: 'Pet created successfully' });
     })
@@ -209,12 +214,13 @@ app.post('/POST/api/addPet', (req, res) => {
     });
 });
 
+
 // POST GROUPS to the database
 app.post('/POST/api/addGroups', (req, res) => {
-  const group = req.body;
+  const { groupKey, groupData } = req.body;
   const groupsRef = ref(database, 'groups');
-  const newGroupRef = push(groupsRef);
-  set(newGroupRef, group)
+  const groupRef = child(groupsRef, groupKey);
+  set(groupRef, groupData)
     .then(() => {
       res.json({ message: 'Group created successfully' });
     })
@@ -230,7 +236,7 @@ app.put('/PUT/api/editPet/:petName', (req, res) => {
   const petName = req.params.petName;
   const updatedPet = req.body;
 
-  const petRef = ref(database, 'pets', petName);
+  const petRef = child(ref(database, 'pets'), petName);
   set(petRef, updatedPet)
     .then(() => {
       res.json({ message: 'Pet updated successfully' });
@@ -246,8 +252,9 @@ app.put('/PUT/api/joinGroup/:groupId', (req, res) => {
   const groupId = req.params.groupId;
   const { username } = req.body;
 
-  const groupsRef = ref(database, `groups/${groupId}`);
-  set(groupsRef, { [username]: true })
+  const groupsRef = ref(database, 'groups');
+  const groupRef = child(groupsRef, groupId);
+  set(groupRef, { [username]: true })
     .then(() => {
       res.json({ message: 'User joined the group successfully' });
     })
