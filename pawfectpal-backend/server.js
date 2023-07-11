@@ -1,226 +1,162 @@
-// Import required modules
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const mysql = require('mysql');
+const firebase = require('firebase/app');
+require('firebase/database');
 
-// Create an Express application
+const { getDatabase, onValue, ref, set: databaseSet, push, set, child } = require('firebase/database');
+const { executeQueries, addDataToFirebase } = require('./firebaseData');
+
 const app = express();
 
-// Middleware setup
 app.use(bodyParser.json());
 app.use(cors());
 
-// Define your API routes
+// Your Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyAbp9cWuGC7WDSt7Q19hwDuwUVEe6YHs4Q",
+  authDomain: "pawfect-pals-da18a.firebaseapp.com",
+  databaseURL: "https://pawfect-pals-da18a-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "pawfect-pals-da18a",
+  storageBucket: "pawfect-pals-da18a.appspot.com",
+  messagingSenderId: "458110592532",
+  appId: "1:458110592532:web:13da8b1eab5a6b6a6ea901",
+  measurementId: "G-WGJQ48HVDL",
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const database = getDatabase();
+
 app.get('/', (req, res) => {
   res.send('Hello, world! testing');
 });
 
-// Start the server
-const port = 3000;
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-});
-
-
-
-//// database
-
-// Create a connection pool for the MySQL database
-const pool = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: 'root',
-    database: 'heap23',
-});
-
-/*
-// Define an API endpoint to retrieve a name from the database
-app.get('/api/tasks', (req, res) => {
-    const query = 'SELECT username FROM user LIMIT 1'; // Assuming you have a 'user' table with a 'username' column
-    // Execute the query
-    pool.getConnection((err, connection) => {
-      if (err) {
-        console.error('Error getting connection from the pool:', err);
-        res.status(500).json({ error: 'Internal Server Error' });
-        return;
-      }
-      connection.query(query, (err, results) => {
-        connection.release(); // Release the connection back to the pool
-        if (err) {
-          console.error('Error executing the query:', err);
-          res.status(500).json({ error: 'Internal Server Error' });
-          return;
-        }
-        if (results.length === 0) {
-          res.status(404).json({ error: 'Name not found' });
-          return;
-        }
-        const name = results[0].username;
-        res.json({ name });
-      });
-    });
-  });
-*/
+// addDataToFirebase(database);
 
 // GET TASK from the database
 app.get('/GET/api/task', (req, res) => {
-  const query = 'SELECT * FROM task'; // Select all columns from the 'task' table
-  // Execute the query
-  pool.getConnection((err, connection) => {
-    if (err) {
-      console.error('Error getting connection from the pool:', err);
-      res.status(500).json({ error: 'Internal Server Error heh1' });
-      return;
-    }
-    connection.query(query, (err, results) => {
-      connection.release(); // Release the connection back to the pool
-      if (err) {
-        console.error('Error executing the query:', err);
-        res.status(500).json({ error: 'Internal Server Error heh2' });
-        return;
-      }
-      //const resultsRow = results[0];  // <== note: this is to return first row of data
-      //const resultsAttribute = results[0].taskID;  // <== note: this returns the specific attribute
-      const jsonString = JSON.stringify(results, null, 2); // Indent with 2 spaces
-      res.setHeader('Content-Type', 'application/json');
-      res.send(jsonString); // Send the query results as the JSON response with indentation
-    });
+  const tasksRef = ref(database, 'tasks');
+  onValue(tasksRef, (snapshot) => {
+    const tasks = snapshot.val();
+    res.json(tasks);
+  }, (error) => {
+    console.error('Error fetching tasks:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
   });
 });
 
-
 // GET PET from the database
 app.get('/GET/api/pet', (req, res) => {
-  const query = 'SELECT * FROM pet'; // Select all columns from the 'pet' table
-  // Execute the query
-  pool.getConnection((err, connection) => {
-    if (err) {
-      console.error('Error getting connection from the pool:', err);
-      res.status(500).json({ error: 'Internal Server Error heh1' });
-      return;
-    }
-    connection.query(query, (err, results) => {
-      connection.release(); // Release the connection back to the pool
-      if (err) {
-        console.error('Error executing the query:', err);
-        res.status(500).json({ error: 'Internal Server Error heh2' });
-        return;
-      }
-      //const resultsRow = results[0];  // <== note: this is to return first row of data
-      //const resultsAttribute = results[0].taskID;  // <== note: this returns the specific attribute
-      const jsonString = JSON.stringify(results, null, 2);
-      res.setHeader('Content-Type', 'application/json');
-      res.send(jsonString);
-    });
+  const petsRef = ref(database, 'pets');
+  onValue(petsRef, (snapshot) => {
+    const pets = snapshot.val();
+    res.json(pets);
+  }, (error) => {
+    console.error('Error fetching pets:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
   });
 });
 
 // GET GROUPS from the database
 app.get('/GET/api/groups', (req, res) => {
-  const query = 'SELECT * FROM groups'; // Select all columns from the 'groups' table
-  // Execute the query
-  pool.getConnection((err, connection) => {
-    if (err) {
-      console.error('Error getting connection from the pool:', err);
-      res.status(500).json({ error: 'Internal Server Error heh1' });
-      return;
-    }
-    connection.query(query, (err, results) => {
-      connection.release(); // Release the connection back to the pool
-      if (err) {
-        console.error('Error executing the query:', err);
-        res.status(500).json({ error: 'Internal Server Error heh2' });
-        return;
-      }
-      //const resultsRow = results[0];  // <== note: this is to return first row of data
-      //const resultsAttribute = results[0].taskID;  // <== note: this returns the specific attribute
-      const jsonString = JSON.stringify(results, null, 2);
-      res.setHeader('Content-Type', 'application/json');
-      res.send(jsonString);
-    });
+  const groupsRef = ref(database, 'groups');
+  onValue(groupsRef, (snapshot) => {
+    const groups = snapshot.val();
+    res.json(groups);
+  }, (error) => {
+    console.error('Error fetching groups:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
   });
 });
-
 
 // POST TASK to the database
 app.post('/POST/api/addTask', (req, res) => {
-  const task = req.body; // Get the task data from the request body
-  // Construct the SQL query to insert the new task into the table
-  const query = `
-    INSERT INTO task (taskID, groupID, taskDate, taskTime, petName, title, notes, isCompleted, people)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) 
-  `;
-  // //VALUES (${task.taskID}, ${task.groupID}, '${task.taskDate}', '${task.taskTime}', '${task.petName}', '${task.title}', '${task.notes}', ${task.isCompleted}, '${task.people}')
-  // Execute the query
-  pool.getConnection((err, connection) => {
-    if (err) {
-      console.error('Error getting connection from the pool:', err);
-      res.status(500).json({ error: 'Internal Server Error heh1' });
-      return;
-    }
-    connection.query(query, (err, results) => {
-      connection.release(); // Release the connection back to the pool
-      if (err) {
-        console.error('Error executing the query:', err);
-        res.status(500).json({ error: 'Internal Server Error heh2' });
-        return;
-      }
+  const taskKey = req.body.taskKey; // Assuming the custom key is provided in the request body
+  const taskData = req.body.taskData; // Assuming the task data is provided in the request body
+
+  const tasksRef = ref(database, 'tasks');
+  const taskRef = child(tasksRef, taskKey);
+  set(taskRef, taskData)
+    .then(() => {
       res.json({ message: 'Task created successfully' });
+    })
+    .catch((error) => {
+      console.error('Error creating task:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
     });
-  });
 });
+
 
 // POST PET to the database
 app.post('/POST/api/addPet', (req, res) => {
-  const pet = req.body; // Get the pet data from the request body
-  // Construct the SQL query to insert the new pet into the table
-  const query = `
-    INSERT INTO pet (petName, groupID, breed, birthday, petPicture)
-    VALUES (?, ?, ?, ?, ?)
-  `;
-  // Execute the query
-  pool.getConnection((err, connection) => {
-    if (err) {
-      console.error('Error getting connection from the pool:', err);
-      res.status(500).json({ error: 'Internal Server Error heh1' });
-      return;
-    }
-    connection.query(query, (err, results) => {
-      connection.release(); // Release the connection back to the pool
-      if (err) {
-        console.error('Error executing the query:', err);
-        res.status(500).json({ error: 'Internal Server Error heh2' });
-        return;
-      }
+  const petKey = req.body.petKey; // Assuming the custom key is provided in the request body
+  const petData = req.body.petData; // Assuming the pet data is provided in the request body
+
+  const petsRef = ref(database, 'pets');
+  const petRef = child(petsRef, petKey);
+  set(petRef, petData)
+    .then(() => {
       res.json({ message: 'Pet created successfully' });
+    })
+    .catch((error) => {
+      console.error('Error creating pet:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
     });
-  });
 });
+
 
 // POST GROUPS to the database
 app.post('/POST/api/addGroups', (req, res) => {
-  const group = req.body; // Get the group data from the request body
-  // Construct the SQL query to insert the new group into the table
-  const query = `
-    INSERT INTO groups (groupID, groupName)
-    VALUES (?, ?)
-  `;
-  // Execute the query
-  pool.getConnection((err, connection) => {
-    if (err) {
-      console.error('Error getting connection from the pool:', err);
-      res.status(500).json({ error: 'Internal Server Error heh1' });
-      return;
-    }
-    connection.query(query, (err, results) => {
-      connection.release(); // Release the connection back to the pool
-      if (err) {
-        console.error('Error executing the query:', err);
-        res.status(500).json({ error: 'Internal Server Error heh2' });
-        return;
-      }
+  const { groupKey, groupData } = req.body;
+  const groupsRef = ref(database, 'groups');
+  const groupRef = child(groupsRef, groupKey);
+  set(groupRef, groupData)
+    .then(() => {
       res.json({ message: 'Group created successfully' });
+    })
+    .catch((error) => {
+      console.error('Error creating group:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
     });
-  });
+});
+
+// :petName is a URL parameter representing the name of the pet being edited
+// PUT EDIT PET in the database
+app.put('/PUT/api/editPet/:petName', (req, res) => {
+  const petName = req.params.petName;
+  const updatedPet = req.body;
+
+  const petRef = child(ref(database, 'pets'), petName);
+  set(petRef, updatedPet)
+    .then(() => {
+      res.json({ message: 'Pet updated successfully' });
+    })
+    .catch((error) => {
+      console.error('Error updating pet:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    });
+});
+
+// PUT JOIN GROUP in the database
+app.put('/PUT/api/joinGroup/:groupId', (req, res) => {
+  const groupId = req.params.groupId;
+  const { username } = req.body;
+
+  const groupsRef = ref(database, `groups/${groupId}`);
+  const userRef = child(groupsRef, username);
+  set(userRef, true)
+    .then(() => {
+      res.json({ message: 'User joined the group successfully' });
+    })
+    .catch((error) => {
+      console.error('Error joining the group:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    });
+});
+
+
+const port = 3000;
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });
