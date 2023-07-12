@@ -14,6 +14,7 @@ import indivPetView from "./src/views/Indiv-pet-view.vue";
 import groupMember from "./src/views/Group-member-view.vue";
 import signUp from "./src/views/Sign-up-view.vue";
 import Login from "./src/views/Login-view.vue";
+import petUpdate from "./src/views/Pet-update-view.vue";
 
 import { auth } from "./src/firebase";
 
@@ -93,6 +94,11 @@ const routes = [
   {
     path: "/login",
     component: Login,
+  },
+
+  {
+    path: "/petUpdate",
+    component: petUpdate,
   },
 ];
 
