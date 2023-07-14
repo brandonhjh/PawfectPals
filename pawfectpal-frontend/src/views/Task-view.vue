@@ -15,7 +15,7 @@
                 </div>
             </div>
         </div> 
-        <div  id="green-banner"  class="row mx-1 mb-2 pb-2 ">
+        <div  id="green-banner"  class="row mx-1 mb-2 pb-2 rounded-bottom ">
             <div class="input-group">
                 <input type="text" class="form-control rounded-bottom-0" id="taskTitle" placeholder="Title">
             </div>

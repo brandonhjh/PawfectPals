@@ -22,7 +22,7 @@
       <div class="col-7 d-flex justify-content-left">
         <div class="d-flex align-items-center">
           <img src="../assets/house.svg" alt="" class="" />
-          <p class="mb-0">Hong Family</p>
+          <p class="mb-0">&nbsp; Home</p>
         </div>
       </div>
 
