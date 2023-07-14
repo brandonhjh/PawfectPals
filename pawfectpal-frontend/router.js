@@ -16,6 +16,7 @@ import signUp from "./src/views/Sign-up-view.vue";
 import Login from "./src/views/Login-view.vue";
 import petUpdate from "./src/views/Pet-update-view.vue";
 
+
 import { auth } from "./src/firebase";
 
 const routes = [
@@ -100,6 +101,7 @@ const routes = [
     path: "/petUpdate",
     component: petUpdate,
   },
+
 ];
 
 const router = createRouter({
