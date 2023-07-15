@@ -1,6 +1,12 @@
 <template lang="html">
-      <div class="container my-5 " >
-    <div id="green-banner" class="container border rounded-4 pt-4 pb-3 " >
+    <div class="container my-5" >
+        <div id="green-banner" class="container border rounded-4 pt-4 pb-3 " >
+            <div class="row text-center  mx-2 px-2 my-2 py-2"><h4><b>
+                Join Group 
+            </b>
+            </h4>
+            
+        </div>
       <div class="mb-3 mt-5 pt-5 ">
         <label for="groupId" class="form-label">Group ID:</label>
         <input
@@ -27,7 +33,7 @@
               type="submit"
               class="btn btn-outline-light rounded-pill btn-sm"
             >
-              Save
+              Confirm
             </button>
           </div>
           <div class="col"></div>
@@ -43,5 +49,6 @@ export default {
 }
 </script>
 <style lang="css">
+
     
 </style>
