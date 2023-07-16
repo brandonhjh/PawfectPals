@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-5">
         <div class="rounded text-center">
-          <button type="button" id="font-dark-green"  class="btn my-1" @click="goToGroupAddMember">
+          <button type="button" id="font-dark-green"  class="btn my-1" @click="goToJoinGroup">
             + Join Group
           </button>
         </div>
@@ -58,9 +58,9 @@ export default {
       this.$router.push("/createGroup");
     },
 
-    goToGroupAddMember() {
-      console.log("otw to add member to group");
-      this.$router.push("/groupAddMember");
+    goToJoinGroup() {
+      console.log("otw to join existing group");
+      this.$router.push("/joinGroup");
     },
 
     goToGroupPets() {
