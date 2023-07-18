@@ -19,9 +19,9 @@
 
         </div>
         <div class="row bg-white border rounded-3 mx-3 my-3 py-3 px-3 ">
-            <div id="font-dark-green" class="my-auto mx-auto p-2 mt-3 border rounded-3 border-muted">
-                Birthday
-            </div>
+            <div id="font-dark-green" class="col-8 my-auto mx-auto p-2 mt-3 border rounded-3 border-muted "> Birthday </div>
+            <div class="col-4 my-auto mx-auto p-2 mt-3 border rounded-3 border-muted text-dark text-center"> 01/06/2020 </div>
+
             <div id="font-dark-green" class="my-auto mx-auto p-2 mt-3 border rounded-3 border-muted">
                 Breed
             </div>
@@ -31,17 +31,20 @@
             <div id="font-dark-green" class="my-auto mx-auto p-2 mt-3 border rounded-3 border-muted">
                 Medication
             </div>    
+            
+            
+            <div id="font-dark-green" class="col-8 my-auto mx-auto p-2 mt-3 border rounded-3 border-muted"> Last check-up done </div>
+            <div class="col-4 my-auto mx-auto p-2 mt-3 border rounded-3 border-muted text-dark text-center"> 12/06/2023 </div>
+
             <div id="font-dark-green" class="my-auto mx-auto p-2 mt-3 border rounded-3 border-muted">
                 Description
             </div>  
-            
-            <div class="col-8 my-auto mx-auto p-2 mt-3 border rounded-3 border-muted text-dark"> Last check-up done </div>
-            <div class="col-4 my-auto mx-auto p-2 mt-3 border rounded-3 border-muted text-dark text-center"> 12/06/2023 </div>
             
             <div class="col d-flex justify-content-center my-auto mx-auto p-2">
                 <button
                     type="submit" 
                     class="btn btn-outline-dark btn-sm"
+                    @click="goToPetUpdate"
                 >
                 Edit
                 </button>
@@ -85,6 +88,12 @@
 export default {
   name: "Indiv-pet-view",
   components: {},
+  methods:{
+    goToPetUpdate() {
+      console.log("otw to pet update page");
+      this.$router.push("/petUpdate");
+    },
+  },
 };
 </script>
 <style lang="css">
