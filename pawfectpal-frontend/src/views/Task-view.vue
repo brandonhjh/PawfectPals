@@ -6,7 +6,7 @@
         <div id="green-banner"  class="row mx-1 rounded-top">
             <div class="col-auto align-self-start p-0">
                 <div class="mb-1 pb-2 ps-3 float-end">
-                    <button type="button" class="btn btn-sm mt-2 py-1 px-2 text-light">Cancel</button>
+                    <button type="button" class="btn btn-sm mt-2 py-1 px-2 text-light" @click="goToHome">Cancel</button>
                 </div>
             </div>
             <div class="col align-self-end p-0">
@@ -53,6 +53,12 @@
 export default {
     name: "Task-view",
     components: {},
+    methods:{
+        goToHome() {
+            console.log("otw to Home page");
+            this.$router.push("/");
+    },
+    },
 }
 </script>
 <style lang="css">

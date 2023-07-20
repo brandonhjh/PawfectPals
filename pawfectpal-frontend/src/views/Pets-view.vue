@@ -41,7 +41,7 @@ export default {
   methods: {
     goToAddPet() {
       console.log("otw to add pet");
-      this.$router.push("createpets");
+      this.$router.push("/createPets");
     },
     goToIndivPet() {
       console.log("otw to indiv pet");
