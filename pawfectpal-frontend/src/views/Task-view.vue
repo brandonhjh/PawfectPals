@@ -38,9 +38,28 @@
                     <option value="Justin">Justin</option>
                 </select>
             </div>
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" id="taskDate" placeholder="Date">
-                <input type="text" class="form-control input-space" id="taskTime" placeholder="Time">
+            <div class="row mb-3 ">
+                <div class="col-6 form-group ">
+                    <label for="exampleInput2" class="mx-1 px-1" > Date </label>
+                    <input 
+                    type="date"
+                    id="start"
+                    class="col-6 form-control ms-2 ps-2"
+                    min="2023-01-01"
+                    max="2023-12-31"
+                    >
+                </div>
+                <div class="col-6 form-group ">
+                    <label for="timePicker" class="mx-1 px-1" > Time </label>
+                    <input 
+                    type="time"
+                    id="start"
+                    class="col-6 form-control ms-2 ps-2"
+                    
+                    >
+                </div>
+                
+                 
             </div>
             <div class="ms-3 p-0 px-1 form-check form-switch">
                 <label class="form-check-label" for="taskCalendar">To be shown on calendar</label>
