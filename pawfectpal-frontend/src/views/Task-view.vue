@@ -6,7 +6,7 @@
         <div id="green-banner"  class="row mx-1 rounded-top">
             <div class="col-auto align-self-start p-0">
                 <div class="mb-1 pb-2 ps-3 float-end">
-                    <button type="button" class="btn btn-sm mt-2 py-1 px-2 text-light">Cancel</button>
+                    <button type="button" class="btn btn-sm mt-2 py-1 px-2 text-light" @click="goToHome">Cancel</button>
                 </div>
             </div>
             <div class="col align-self-end p-0">
@@ -38,9 +38,28 @@
                     <option value="Justin">Justin</option>
                 </select>
             </div>
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" id="taskDate" placeholder="Date">
-                <input type="text" class="form-control input-space" id="taskTime" placeholder="Time">
+            <div class="row mb-3 ">
+                <div class="col-6 form-group ">
+                    <label for="exampleInput2" class="mx-1 px-1" > Date </label>
+                    <input 
+                    type="date"
+                    id="start"
+                    class="col-6 form-control ms-2 ps-2"
+                    min="2023-01-01"
+                    max="2023-12-31"
+                    >
+                </div>
+                <div class="col-6 form-group ">
+                    <label for="timePicker" class="mx-1 px-1" > Time </label>
+                    <input 
+                    type="time"
+                    id="start"
+                    class="col-6 form-control ms-2 ps-2"
+                    
+                    >
+                </div>
+                
+                 
             </div>
             <div class="ms-3 p-0 px-1 form-check form-switch">
                 <label class="form-check-label" for="taskCalendar">To be shown on calendar</label>
@@ -53,6 +72,12 @@
 export default {
     name: "Task-view",
     components: {},
+    methods:{
+        goToHome() {
+            console.log("otw to Home page");
+            this.$router.push("/");
+    },
+    },
 }
 </script>
 <style lang="css">
