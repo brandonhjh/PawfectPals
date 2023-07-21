@@ -1,6 +1,6 @@
 <template lang="html">
-  <div class="container border rounded-4 pt-4 px-1 pb-5 mt-5" id="green-banner">
-    <div class="mx-0 mb-5 mt-5 pt-2" style="color: white">
+  <div class="container rounded-4 pt-4 px-1 pb-3 mt-5" >
+    <div class="mx-3 m-auto pt-5" style="color:black" >
       <FullCalendar :options="calendarOptions" />
     </div>
   </div>
@@ -37,17 +37,20 @@ export default {
 </script>
 <style lang="css">
 .fc-daygrid-day-number {
-  color: white;
+  color: black;
 }
 .fc-col-header-cell-cushion {
-  color: white;
+  color: black;
+  
 }
-
 .fc-event-time {
-  color: white;
+  color: #8B9D83;
 }
 
 .fc-event-title {
-  color: white;
+  color: black;
+ 
 }
+
+
 </style>
