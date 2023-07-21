@@ -7,7 +7,6 @@ import Groups from "./src/views/Groups-view.vue";
 import Pets from "./src/views/Pets-view.vue";
 import createGroup from "./src/views/Create-group-view.vue";
 import createPets from "./src/views/Create-pets-view.vue";
-import groupAddMember from "./src/views/Group-add-member-view.vue";
 import groupAddPet from "./src/views/Group-add-pet-view.vue";
 import groupPets from "./src/views/Group-pets-view.vue";
 import indivPetView from "./src/views/Indiv-pet-view.vue";
@@ -60,11 +59,6 @@ const routes = [
   {
     path: "/createPets",
     component: createPets,
-  },
-
-  {
-    path: "/groupAddMember",
-    component: groupAddMember,
   },
 
   {
