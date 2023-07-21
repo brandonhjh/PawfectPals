@@ -1,12 +1,10 @@
 <template lang="html">
     <div class="container my-5" >
         <div id="green-banner" class="container border rounded-4 pt-4 pb-3 " >
-            <div class="row text-center  mx-2 px-2 my-2 py-2"><h4><b>
+            <div class="row text-center mx-2 px-2 my-2 py-2"><h4><b>
                 Join Group 
-            </b>
-            </h4>
-            
-        </div>
+              </b></h4>
+            </div>
       <div class="mb-3 mt-5 pt-5 ">
         <label for="groupId" class="form-label">Group ID:</label>
         <input
@@ -26,7 +24,7 @@
         />
       </div>
       <div class="container mt-5 pt-5">
-        <div class="row mt-5 pt-5">
+        <div class="row mt-4 pt-4">
           <div class="col"></div>
           <div class="col d-flex justify-content-center">
             <button
@@ -34,6 +32,11 @@
               class="btn btn-outline-light rounded-pill btn-sm"
             >
               Confirm
+            </button>
+          </div>
+          <div class="col d-flex justify-content-center">
+            <button type="button" class="btn btn-danger rounded-pill" @click="goToGroups">
+              Cancel
             </button>
           </div>
           <div class="col"></div>
@@ -46,6 +49,12 @@
 export default {
     name: "Group-add-member-view",
     components: {},
+    methods:{
+    goToGroups() {
+      console.log("otw back to Group page");
+      this.$router.push("/groups");
+    },
+  },
 }
 </script>
 <style lang="css">
