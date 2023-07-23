@@ -1,4 +1,5 @@
 <template lang="html">
+
   <div class="container my-5 " >
     <div id="green-banner" class="container border rounded-4 pt-4 pb-3 " >
       <div class="mb-3 mt-5 pt-5 ">
@@ -30,6 +31,11 @@
               Save
             </button>
           </div>
+          <div class="col d-flex justify-content-center">
+            <button type="button" class="btn btn-danger rounded-pill" @click="goToGroups">
+              Cancel
+            </button>
+          </div>
           <div class="col"></div>
         </div>
       </div>
@@ -40,6 +46,12 @@
 export default {
   name: "Create-group-view",
   components: {},
+  methods:{
+    goToGroups() {
+      console.log("otw back to Group page");
+      this.$router.push("/groups");
+    },
+  },
 };
 </script>
 

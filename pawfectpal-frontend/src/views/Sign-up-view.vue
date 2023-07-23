@@ -39,7 +39,7 @@
             </div> -->
 
             <div class="d-grid">
-              <button type="submit" class="btn btn-success">Sign Up</button>
+              <button type="submit" class="btn " id="green-banner">Sign Up</button>
               <p class="text-center text-muted mt-2">
                 By registering you are agreeing to let PawfectPals use your data
                 for our service
