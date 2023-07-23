@@ -2,12 +2,18 @@
 <nav id="green-banner" class="navbar navbar-expand-lg navbar-light ">
     <div class="container">
       <!-- Brand/logo -->
-        <div class="navbar-nav ml-auto">
-            <img src="../assets/bell.svg" alt="" style="opacity: 0;">
+        <div class="navbar-nav ml-auto ">
+          <li class="nav-item mx-auto my-auto p-auto">
+            <a href="#">
+              <img src="../assets/person.svg" alt="" style="opacity: 100; stroke=white;" @click="goToAccount"  >
+            </a>
+          </li>
+            
         </div>
       <!-- Centered text -->
       <div class="navbar-text mx-auto text-white" @click="goToHome">
       PawfectPals
+      
       </div>
       
       <!-- Icon on the right end -->
@@ -43,7 +49,12 @@ export default {
         goToNotifications() {
             console.log("otw to notifications page");
             this.$router.push('/notifications');
-        }
+        },
+        goToAccount() {
+            console.log("otw to account page");
+            this.$router.push('/accountPage');
+        },
+
     },
 }
 
