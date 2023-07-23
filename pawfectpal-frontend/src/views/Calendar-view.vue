@@ -51,6 +51,36 @@ export default {
   color: black;
  
 }
+.fc-dayGridWeek-button.fc-button.fc-button-primary.fc-button-active {
+  background-color:#8B9D83;
+  border-color:#8B9D83; 
+}
+.fc-dayGridWeek-button.fc-button.fc-button-primary {
+  background-color:#515751;
+  border-color:#515751;
+}
+.fc-dayGridMonth-button.fc-button.fc-button-primary.fc-button-active {
+  background-color:#8B9D83;
+  border-color:#8B9D83 ;
+
+}
+.fc-dayGridMonth-button.fc-button.fc-button-primary {
+  background-color:#515751;
+  border-color:#515751 ;
+
+}
+.fc-prev-button.fc-button.fc-button-primary{
+  background-color:#8B9D83;
+  border-color:#8B9D83 ;
+}
+.fc-next-button.fc-button.fc-button-primary{
+  background-color:#515751;
+  border-color:#515751 ;
+}
+.fc-toolbar-title{
+  padding: auto;
+  text-align: center;
+}
 
 
 </style>
