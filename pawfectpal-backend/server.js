@@ -2,10 +2,89 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const firebase = require('firebase/app');
-require('firebase/database');
+require('firebase-admin/database');
 
-const { getDatabase, onValue, ref, set: databaseSet, push, set, child } = require('firebase/database');
+const { getDatabase, onValue, ref, set: databaseSet, push, set, child } = require('firebase-admin/database');
 const { executeQueries, addDataToFirebase } = require('./firebaseData');
+
+const { auth } = require('./firebaseIndex');
+const { getAuth, verifyIdToken } = require("firebase-admin/auth");
+const admin = require("firebase-admin");
+
+const { getIdToken } = require('firebase/auth');
+
+const verifyToken = async (idToken) => {
+  try {
+    const decodedToken = await auth.verifyIdToken(idToken);
+    const { aud, iss } = decodedToken;
+
+    // Verify the audience and issuer values
+    const projectId = 'pawfect-pals-da18a';
+    const expectedAudience = 'pawfect-pals-da18a';
+    const expectedIssuer = `https://securetoken.google.com/${projectId}`;
+    console.log(`expectedAudience: ${expectedAudience}`);
+    console.log(`expectedIssuer: ${expectedIssuer}`);
+    console.log(`aud: ${aud}`);
+    console.log(`iss: ${iss}`);
+    console.log(JSON.stringify(idToken, null, 2));
+    console.log(decodedToken);
+
+
+    if (aud !== expectedAudience || iss !== expectedIssuer) {
+      console.error('Invalid audience or issuer');
+      return;
+    }
+
+    // Audience and issuer are valid
+    console.log('Audience and issuer are valid');
+  } catch (error) {
+    console.error('Error verifying ID token:', error);
+  }
+};
+
+
+// Provide a valid ID token here
+const idToken = 'eyJhbGciOiJSUzI1NiIsImtpZCI6ImIyZGZmNzhhMGJkZDVhMDIyMTIwNjM0OTlkNzdlZjRkZWVkMWY2NWIiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcGF3ZmVjdC1wYWxzLWRhMThhIiwiYXVkIjoicGF3ZmVjdC1wYWxzLWRhMThhIiwiYXV0aF90aW1lIjoxNjkwMTk1MjA3LCJ1c2VyX2lkIjoiUUlxdFJJWG9aNVpzOGlSQUtxdU1mSE9sZUh6MSIsInN1YiI6IlFJcXRSSVhvWjVaczhpUkFLcXVNZkhPbGVIejEiLCJpYXQiOjE2OTAxOTUyMDcsImV4cCI6MTY5MDE5ODgwNywiZW1haWwiOiJxaWppZUB0ZXN0LmNvbSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJlbWFpbCI6WyJxaWppZUB0ZXN0LmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6InBhc3N3b3JkIn19.Go9s-gk_zHCz7kJ7DPQgoSF_EbdPP7VpvpkT_3yzMnOGf-FZRpwskm8HAHK20vLLruLImkUo8J9w6e5TuRHLXEKf7p4Q0uzpWQH1r4DytAcMdiVA-H404WE8FutqwLwAAyP8MwiC0i3tYTwMe2UvfL9xU6fXcf4Jk7Kz-HU1fZ3bdoZP3zqCl0RijWhXXs59bgJWA6X9jPgNLOZl2_HcsMGp1BY1KozUOiRThU0CY-PJ3PhwbyOnrgMH68s7b2AlzxsTp1YZ3EFNmHZppEeiGx0FQRcnDnrWyKzbddE8rKfs3SVs5UnNTP25SMk0VWG9LZ7yiLDMUJ9boZTcdIMG6g';
+verifyToken(idToken);
+
+/*
+////////////////////////////////////////////
+
+// send id token in the browser
+const response = await fetch(GetCookieUrl, {
+  headers: new Headers({
+    'Authorization': `Bearer ${idToken}`
+  })
+});
+
+// verify the id token on the server
+const idToken = req.header('Authorization')?.split('Bearer ')?.[1];
+const decodedIdToken = await verifyIdToken(idToken, checkRevoked);
+
+/////////////////////////////////////////////
+
+// get the id token in the browser
+const idToken = await getIdToken(auth.currentUser);
+const response = await fetch(getCookieUrl, {
+  headers: new Headers({
+    'Authorization': `Bearer ${idToken}`
+  })
+});
+
+// verify the id token on the server
+const cookie = await adminAuth.createSessionCookie(idToken);
+res.cookie('__session', cookie, options)
+
+// validate a cookie on the server
+const cookies = cookie.parse(req.headers.cookie);
+const { __session } = cookies;
+const { uid } = await adminAuth.verifySessionCookie(__session);
+
+/////////////////////////////////////////////
+*/
+
+// Initialize Firebase
+// const auth = getAuth(app);
 
 const app = express();
 
@@ -26,18 +105,53 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-const database = getDatabase();
+// const database = getDatabase();
+const database = admin.database();
 
 app.get('/', (req, res) => {
   res.send('Hello, world! testing');
 });
 
+
 // addDataToFirebase(database);
 
+// Middleware to enable authentication for protected routes
+const authenticateUser = (req, res, next) => {
+  const { authorization } = req.headers;
+
+  console.log(req.headers);
+  if (!authorization || !authorization.startsWith('Bearer ')) {
+    console.log('No ID token provided');
+    res.status(401).json({ error: 'Unauthorized' });
+    return;
+  }
+
+  const idToken = authorization.split('Bearer ')[1];
+  console.log(idToken);
+
+  auth.verifyIdToken(idToken).then((decodedToken) => {
+      console.log('ID token verified:', decodedToken);
+      req.user = decodedToken;
+      next();
+    })
+    .catch((error) => {
+      console.error('Error verifying ID token:', error);
+      res.status(401).json({ error: 'Unauthorized' });
+    });
+};
+
+// Example usage of the middleware
+app.get("/protected-route", authenticateUser, (req, res) => {
+  // If the code execution reaches here, the user is authenticated
+  res.json({ message: "Authenticated user" });
+});
+
 // GET TASK from the database
-app.get('/GET/api/task', (req, res) => {
-  const tasksRef = ref(database, 'tasks');
-  onValue(tasksRef, (snapshot) => {
+app.get('/GET/api/task', authenticateUser, (req, res) => {
+  const userId = req.user.uid;
+  console.log(userId);
+  const tasksRef = database.ref(`tasks/${userId}`);
+  tasksRef.on('value', (snapshot) => {
     const tasks = snapshot.val();
     res.json(tasks);
   }, (error) => {
@@ -47,9 +161,10 @@ app.get('/GET/api/task', (req, res) => {
 });
 
 // GET PET from the database
-app.get('/GET/api/pet', (req, res) => {
-  const petsRef = ref(database, 'pets');
-  onValue(petsRef, (snapshot) => {
+app.get('/GET/api/pet', authenticateUser, (req, res) => {
+  const userId = req.user.uid;
+  const petsRef = database.ref(`pets/${userId}`);
+  petsRef.on('value', (snapshot) => {
     const pets = snapshot.val();
     res.json(pets);
   }, (error) => {
@@ -59,9 +174,10 @@ app.get('/GET/api/pet', (req, res) => {
 });
 
 // GET GROUPS from the database
-app.get('/GET/api/groups', (req, res) => {
-  const groupsRef = ref(database, 'groups');
-  onValue(groupsRef, (snapshot) => {
+app.get('/GET/api/groups', authenticateUser, (req, res) => {
+  const userId = req.user.uid;
+  const groupsRef = database.ref(`groups/${userId}`);
+  groupsRef.on('value', (snapshot) => {
     const groups = snapshot.val();
     res.json(groups);
   }, (error) => {
@@ -71,15 +187,16 @@ app.get('/GET/api/groups', (req, res) => {
 });
 
 // POST TASK to the database
-app.post('/POST/api/addTask', (req, res) => {
-  const taskKey = req.body.taskKey; // Assuming the custom key is provided in the request body
+app.post('/POST/api/addTask', authenticateUser, (req, res) => {
+  const userId = req.user.uid;
   const taskData = req.body.taskData; // Assuming the task data is provided in the request body
+  const tasksRef = database.ref(`tasks/${userId}`);
+  const newTaskRef = tasksRef.push(); // Use push to generate a new reference with a unique key
+  const newTaskKey = newTaskRef.key; // Get the unique key generated by push
 
-  const tasksRef = ref(database, 'tasks');
-  const taskRef = child(tasksRef, taskKey);
-  set(taskRef, taskData)
+  newTaskRef.set(taskData) // Use set() from the newTaskRef to save the data at the specified reference
     .then(() => {
-      res.json({ message: 'Task created successfully' });
+      res.json({ message: 'Task created successfully', taskId: newTaskKey });
     })
     .catch((error) => {
       console.error('Error creating task:', error);
@@ -87,17 +204,17 @@ app.post('/POST/api/addTask', (req, res) => {
     });
 });
 
-
 // POST PET to the database
-app.post('/POST/api/addPet', (req, res) => {
-  const petKey = req.body.petKey; // Assuming the custom key is provided in the request body
+app.post('/POST/api/addPet', authenticateUser, (req, res) => {
+  const userId = req.user.uid;
   const petData = req.body.petData; // Assuming the pet data is provided in the request body
+  const petsRef = database.ref(`pets/${userId}`);
+  const newPetRef = petsRef.push(); // Use push to generate a new reference with a unique key
+  const newPetKey = newPetRef.key; // Get the unique key generated by push
 
-  const petsRef = ref(database, 'pets');
-  const petRef = child(petsRef, petKey);
-  set(petRef, petData)
+  newPetRef.set(petData) // Use set() from the newPetRef to save the data at the specified reference
     .then(() => {
-      res.json({ message: 'Pet created successfully' });
+      res.json({ message: 'Pet created successfully', petId: newPetKey });
     })
     .catch((error) => {
       console.error('Error creating pet:', error);
@@ -105,13 +222,14 @@ app.post('/POST/api/addPet', (req, res) => {
     });
 });
 
-
 // POST GROUPS to the database
-app.post('/POST/api/addGroups', (req, res) => {
+app.post('/POST/api/addGroups', authenticateUser, (req, res) => {
+  const userId = req.user.uid;
   const { groupKey, groupData } = req.body;
-  const groupsRef = ref(database, 'groups');
-  const groupRef = child(groupsRef, groupKey);
-  set(groupRef, groupData)
+  const groupsRef = database.ref(`groups/${userId}`);
+  const groupRef = groupsRef.child(groupKey); // Use child method to get a reference to the groupKey
+  
+  groupRef.set(groupData)
     .then(() => {
       res.json({ message: 'Group created successfully' });
     })
@@ -121,14 +239,15 @@ app.post('/POST/api/addGroups', (req, res) => {
     });
 });
 
-// :petName is a URL parameter representing the name of the pet being edited
 // PUT EDIT PET in the database
-app.put('/PUT/api/editPet/:petName', (req, res) => {
+app.put('/PUT/api/editPet/:petName', authenticateUser, (req, res) => {
+  const userId = req.user.uid;
   const petName = req.params.petName;
   const updatedPet = req.body;
+  const petsRef = database.ref(`pets/${userId}`);
+  const petRef = petsRef.child(petName); // Assuming petName is the key of the pet to be updated
 
-  const petRef = child(ref(database, 'pets'), petName);
-  set(petRef, updatedPet)
+  petRef.update(updatedPet)
     .then(() => {
       res.json({ message: 'Pet updated successfully' });
     })
@@ -138,14 +257,15 @@ app.put('/PUT/api/editPet/:petName', (req, res) => {
     });
 });
 
+
 // PUT JOIN GROUP in the database
-app.put('/PUT/api/joinGroup/:groupId', (req, res) => {
+app.put('/PUT/api/joinGroup/:groupId', authenticateUser, (req, res) => {
+  const userId = req.user.uid;
   const groupId = req.params.groupId;
   const { username } = req.body;
+  const groupUserRef = database.ref(`groups/${groupId}/${userId}`);
 
-  const groupsRef = ref(database, `groups/${groupId}`);
-  const userRef = child(groupsRef, username);
-  set(userRef, true)
+  groupUserRef.update({ [username]: true })
     .then(() => {
       res.json({ message: 'User joined the group successfully' });
     })
@@ -155,8 +275,12 @@ app.put('/PUT/api/joinGroup/:groupId', (req, res) => {
     });
 });
 
-
 const port = 3000;
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
+});
+
+app.use((err, req, res, next) => {
+  console.error('Uncaught Error:', err);
+  res.status(500).json({ error: err.message });
 });
