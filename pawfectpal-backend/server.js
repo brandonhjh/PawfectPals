@@ -204,7 +204,6 @@ app.post('/POST/api/addTask', authenticateUser, (req, res) => {
     });
 });
 
-
 // POST PET to the database
 app.post('/POST/api/addPet', authenticateUser, (req, res) => {
   const userId = req.user.uid;
@@ -223,7 +222,6 @@ app.post('/POST/api/addPet', authenticateUser, (req, res) => {
     });
 });
 
-
 // POST GROUPS to the database
 app.post('/POST/api/addGroups', authenticateUser, (req, res) => {
   const userId = req.user.uid;
@@ -241,15 +239,15 @@ app.post('/POST/api/addGroups', authenticateUser, (req, res) => {
     });
 });
 
-
 // PUT EDIT PET in the database
 app.put('/PUT/api/editPet/:petName', authenticateUser, (req, res) => {
   const userId = req.user.uid;
   const petName = req.params.petName;
   const updatedPet = req.body;
+  const petsRef = database.ref(`pets/${userId}`);
+  const petRef = petsRef.child(petName); // Assuming petName is the key of the pet to be updated
 
-  const petRef = child(ref(database, `pets/${userId}`), petName);
-  set(petRef, updatedPet)
+  petRef.update(updatedPet)
     .then(() => {
       res.json({ message: 'Pet updated successfully' });
     })
@@ -259,15 +257,15 @@ app.put('/PUT/api/editPet/:petName', authenticateUser, (req, res) => {
     });
 });
 
+
 // PUT JOIN GROUP in the database
 app.put('/PUT/api/joinGroup/:groupId', authenticateUser, (req, res) => {
   const userId = req.user.uid;
   const groupId = req.params.groupId;
   const { username } = req.body;
+  const groupUserRef = database.ref(`groups/${groupId}/${userId}`);
 
-  const groupsRef = ref(database, `groups/${groupId}/${userId}`);
-  const userRef = child(groupsRef, username);
-  set(userRef, true)
+  groupUserRef.update({ [username]: true })
     .then(() => {
       res.json({ message: 'User joined the group successfully' });
     })
