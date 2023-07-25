@@ -13,6 +13,8 @@ const admin = require("firebase-admin");
 
 const { getIdToken } = require('firebase/auth');
 
+/* 
+// Check if token works
 const verifyToken = async (idToken) => {
   try {
     const decodedToken = await auth.verifyIdToken(idToken);
@@ -28,13 +30,10 @@ const verifyToken = async (idToken) => {
     console.log(`iss: ${iss}`);
     console.log(JSON.stringify(idToken, null, 2));
     console.log(decodedToken);
-
-
     if (aud !== expectedAudience || iss !== expectedIssuer) {
       console.error('Invalid audience or issuer');
       return;
     }
-
     // Audience and issuer are valid
     console.log('Audience and issuer are valid');
   } catch (error) {
@@ -42,49 +41,10 @@ const verifyToken = async (idToken) => {
   }
 };
 
-
 // Provide a valid ID token here
-const idToken = 'eyJhbGciOiJSUzI1NiIsImtpZCI6ImIyZGZmNzhhMGJkZDVhMDIyMTIwNjM0OTlkNzdlZjRkZWVkMWY2NWIiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcGF3ZmVjdC1wYWxzLWRhMThhIiwiYXVkIjoicGF3ZmVjdC1wYWxzLWRhMThhIiwiYXV0aF90aW1lIjoxNjkwMTk1MjA3LCJ1c2VyX2lkIjoiUUlxdFJJWG9aNVpzOGlSQUtxdU1mSE9sZUh6MSIsInN1YiI6IlFJcXRSSVhvWjVaczhpUkFLcXVNZkhPbGVIejEiLCJpYXQiOjE2OTAxOTUyMDcsImV4cCI6MTY5MDE5ODgwNywiZW1haWwiOiJxaWppZUB0ZXN0LmNvbSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJlbWFpbCI6WyJxaWppZUB0ZXN0LmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6InBhc3N3b3JkIn19.Go9s-gk_zHCz7kJ7DPQgoSF_EbdPP7VpvpkT_3yzMnOGf-FZRpwskm8HAHK20vLLruLImkUo8J9w6e5TuRHLXEKf7p4Q0uzpWQH1r4DytAcMdiVA-H404WE8FutqwLwAAyP8MwiC0i3tYTwMe2UvfL9xU6fXcf4Jk7Kz-HU1fZ3bdoZP3zqCl0RijWhXXs59bgJWA6X9jPgNLOZl2_HcsMGp1BY1KozUOiRThU0CY-PJ3PhwbyOnrgMH68s7b2AlzxsTp1YZ3EFNmHZppEeiGx0FQRcnDnrWyKzbddE8rKfs3SVs5UnNTP25SMk0VWG9LZ7yiLDMUJ9boZTcdIMG6g';
+const idToken = 'eyJhbGciOiJSUzI1NiIsImtpZCI6ImIyZGZmNzhhMGJkZDVhMDIyMTIwNjM0OTlkNzdlZjRkZWVkMWY2NWIiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcGF3ZmVjdC1wYWxzLWRhMThhIiwiYXVkIjoicGF3ZmVjdC1wYWxzLWRhMThhIiwiYXV0aF90aW1lIjoxNjkwMjQ3NzEyLCJ1c2VyX2lkIjoiUUlxdFJJWG9aNVpzOGlSQUtxdU1mSE9sZUh6MSIsInN1YiI6IlFJcXRSSVhvWjVaczhpUkFLcXVNZkhPbGVIejEiLCJpYXQiOjE2OTAyNDc3MTIsImV4cCI6MTY5MDI1MTMxMiwiZW1haWwiOiJxaWppZUB0ZXN0LmNvbSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJlbWFpbCI6WyJxaWppZUB0ZXN0LmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6InBhc3N3b3JkIn19.iDWzBc0rv6advj4sB0iznleOZnohwT_0cEqZ3tP9-imqI7t6BmadD8eY9u1opafmpW0fH8XlBO2pt33rm0vJ1gP6Az3kbo5nrYdo2mon6FkQFuNuvwCqE6qBZZpIrzlPPD6DRi70_G-5rDEBrSgRTrUFxGSDsJBUqEjUJBTYkgbEAjP_3SMSIQP76fKuhmLdrZSNUI8l69EUogQV0fcmwtoY90vUKDjAMZWEmMjbK9tHXsFm-VRi63D8joEJ3-XeavQyVtwbUQIVSnVlGLfxMInPI5BgiVmjLL9xvaEyWf3TOTtY-i9_WSb17ll272z85m5evGPOvUT_IJDrY0RgSw';
 verifyToken(idToken);
-
-/*
-////////////////////////////////////////////
-
-// send id token in the browser
-const response = await fetch(GetCookieUrl, {
-  headers: new Headers({
-    'Authorization': `Bearer ${idToken}`
-  })
-});
-
-// verify the id token on the server
-const idToken = req.header('Authorization')?.split('Bearer ')?.[1];
-const decodedIdToken = await verifyIdToken(idToken, checkRevoked);
-
-/////////////////////////////////////////////
-
-// get the id token in the browser
-const idToken = await getIdToken(auth.currentUser);
-const response = await fetch(getCookieUrl, {
-  headers: new Headers({
-    'Authorization': `Bearer ${idToken}`
-  })
-});
-
-// verify the id token on the server
-const cookie = await adminAuth.createSessionCookie(idToken);
-res.cookie('__session', cookie, options)
-
-// validate a cookie on the server
-const cookies = cookie.parse(req.headers.cookie);
-const { __session } = cookies;
-const { uid } = await adminAuth.verifySessionCookie(__session);
-
-/////////////////////////////////////////////
 */
-
-// Initialize Firebase
-// const auth = getAuth(app);
 
 const app = express();
 
@@ -112,25 +72,21 @@ app.get('/', (req, res) => {
   res.send('Hello, world! testing');
 });
 
-
 // addDataToFirebase(database);
 
 // Middleware to enable authentication for protected routes
 const authenticateUser = (req, res, next) => {
   const { authorization } = req.headers;
-
-  console.log(req.headers);
+  // console.log(req.headers);
   if (!authorization || !authorization.startsWith('Bearer ')) {
     console.log('No ID token provided');
     res.status(401).json({ error: 'Unauthorized' });
     return;
   }
-
   const idToken = authorization.split('Bearer ')[1];
-  console.log(idToken);
-
+  // console.log(idToken);
   auth.verifyIdToken(idToken).then((decodedToken) => {
-      console.log('ID token verified:', decodedToken);
+      // console.log('ID token verified:', decodedToken);
       req.user = decodedToken;
       next();
     })
@@ -140,16 +96,9 @@ const authenticateUser = (req, res, next) => {
     });
 };
 
-// Example usage of the middleware
-app.get("/protected-route", authenticateUser, (req, res) => {
-  // If the code execution reaches here, the user is authenticated
-  res.json({ message: "Authenticated user" });
-});
-
 // GET TASK from the database
 app.get('/GET/api/task', authenticateUser, (req, res) => {
   const userId = req.user.uid;
-  console.log(userId);
   const tasksRef = database.ref(`tasks/${userId}`);
   tasksRef.on('value', (snapshot) => {
     const tasks = snapshot.val();
@@ -207,12 +156,12 @@ app.post('/POST/api/addTask', authenticateUser, (req, res) => {
 // POST PET to the database
 app.post('/POST/api/addPet', authenticateUser, (req, res) => {
   const userId = req.user.uid;
-  const petData = req.body.petData; // Assuming the pet data is provided in the request body
+  const petData = req.body.petData;
   const petsRef = database.ref(`pets/${userId}`);
-  const newPetRef = petsRef.push(); // Use push to generate a new reference with a unique key
-  const newPetKey = newPetRef.key; // Get the unique key generated by push
+  const newPetRef = petsRef.push();
+  const newPetKey = newPetRef.key;
 
-  newPetRef.set(petData) // Use set() from the newPetRef to save the data at the specified reference
+  newPetRef.set(petData)
     .then(() => {
       res.json({ message: 'Pet created successfully', petId: newPetKey });
     })
