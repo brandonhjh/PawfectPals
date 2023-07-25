@@ -15,6 +15,7 @@ import signUp from "./src/views/Sign-up-view.vue";
 import Login from "./src/views/Login-view.vue";
 import petUpdate from "./src/views/Pet-update-view.vue";
 import joinGroup from "./src/views/Group-join-group.vue";
+import AccountPage from "./src/views/AccountPage-view.vue";
 
 import { auth } from "./src/firebase";
 
@@ -99,6 +100,11 @@ const routes = [
   {
     path: "/joinGroup",
     component: joinGroup,
+  },
+
+  {
+    path: "/accountPage",
+    component: AccountPage,
   },
 
 ];
