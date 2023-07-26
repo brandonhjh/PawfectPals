@@ -1,4 +1,5 @@
 <template lang="html">
+  
   <div class="container mt-4">
     <div class="row mx-1">
       <div class="col-4 px-1">
@@ -22,7 +23,7 @@
       </div>
     </div>
 
-    <div id="green-banner" class="row m-1 rounded-3">
+    <div id="green-banner" class="row m-1 py-1 rounded-3">
       <div class="col-2 align-self-center">8:00</div>
       <div class="col-2 align-self-center text-center">
         <img
@@ -46,9 +47,7 @@
         </div>
         <div class="row">
           <div class="col align-self-end mb-1">
-            <button type="button" class="btn btn-outline-light btn-sm py-0 px-1">
-              more
-            </button>
+            <HomeMoreModalVue :visibile="false" variant="success"></HomeMoreModalVue>
           </div>
         </div>
       </div>
@@ -56,9 +55,13 @@
   </div>
 </template>
 <script>
+import HomeMoreModalVue from './Home-more-modal.vue';
+
 export default {
   name: "Home-view",
-  components: {},
+  components: {
+    HomeMoreModalVue
+  },
   methods: {
     goToTask() {
       console.log("otw to task");
