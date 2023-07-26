@@ -1,5 +1,5 @@
 <template lang="html">
-    <div class="container-fluid border p-0" >
+    <div class="container-fluid p-0" >
         <div class="row mt-3 mx-2 pt-2 rounded-top-3" id="green-banner">
             <div class="col-4 text-center">
                 <img src="https://images.squarespace-cdn.com/content/v1/58b4791ad2b857c893179e34/1537971642021-LHW76T7O8JG0M4GLTSTP/IMG_2818.jpg?format=1000w" class="w-75 rounded-circle ps-2">
@@ -52,19 +52,19 @@
                 </div>
             </div>
         
-            <div class="row py-2 px-1">
+            <div class="row py-2">
                 <h4>Group</h4>
             </div>
 
-            <div class="row mx-auto px-3 bg-white rounded">
+            <div class="row mx-auto px-3 bg-white rounded-3">
                 <p id="font-dark-green" class="py-2 m-auto"> Home </p>
             </div>
             
-            <div class="row py-2 px-1">
+            <div class="row py-2">
                 <h4>Care Takers</h4>
             </div>
 
-            <div class="row px-2 ">
+            <div class="row px-auto ">
                 <div class="col-3 align-self-center text-center">
                     <div class="circle-singleline m-auto">
                         J
@@ -83,11 +83,6 @@
                 </div>
             </div>
         </div>
-
-       
-        
-        
-        
     </div>
 </template>
 <script>
