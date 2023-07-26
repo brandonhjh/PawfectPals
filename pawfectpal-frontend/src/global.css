@@ -10,5 +10,15 @@ body{
 }
 
 
+.circle-singleline {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      font-size: 16px;
+      line-height: 40px;
+      text-align: center;    
+      background: #ffffff;
+      color: #515751;
+}
 
 
