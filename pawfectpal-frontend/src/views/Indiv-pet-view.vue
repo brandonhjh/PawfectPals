@@ -18,8 +18,8 @@
             </div>
 
         </div>
-        <div class="row mx-2 p-3 " id="green-banner">
-            <div class="bg-white rounded">
+        <div class="mx-2 p-3 pb-0 mb-5 rounded-bottom-3" id="green-banner">
+            <div class="bg-white rounded p-3">
                 <div class="row m-0">
                     <div id="font-dark-green" class="col-8 my-auto mx-auto p-2 mt-3 border rounded-start-3 border-muted "> Birthday </div>
                     <div class="col-4 my-auto mx-auto p-2 mt-3 border rounded-end-3 border-muted text-dark text-center"> 01/06/2020 </div>
@@ -51,40 +51,38 @@
                     </button>
                 </div>
             </div>
-        </div>
-        <div class="row mx-2 py-2 px-1" id="green-banner">
-            <h4>Group</h4>
-        </div>
-
-        <div class="row mx-2 px-3 " id="green-banner">
-           <div class="bg-white rounded p-2 ps-3">
-            <p id="font-dark-green" class="m-auto"> Home </p>
-           </div>
-        </div>
         
-        <div class="row mx-2 py-2 px-1" id="green-banner">
-            <h4>Care Takers</h4>
-        </div>
+            <div class="row py-2 px-1">
+                <h4>Group</h4>
+            </div>
 
-        <div class="row mx-2 px-2 mb-5 rounded-bottom-3" id="green-banner">
-            <div class="col-3 align-self-center text-center">
-                <div class="circle-singleline m-auto">
-                    J
+            <div class="row mx-auto px-3 bg-white rounded">
+                <p id="font-dark-green" class="py-2 m-auto"> Home </p>
+            </div>
+            
+            <div class="row py-2 px-1">
+                <h4>Care Takers</h4>
+            </div>
+
+            <div class="row px-2 ">
+                <div class="col-3 align-self-center text-center">
+                    <div class="circle-singleline m-auto">
+                        J
+                    </div>
+                    <div class="mt-1">
+                        <p> Jared </p>
+                    </div>
                 </div>
-                <div class="mt-1">
-                    <p> Jared </p>
+                <div class="col-3 align-self-center text-center">
+                    <div class="circle-singleline m-auto">
+                        B
+                    </div>
+                    <div class="mt-1">
+                        <p> Brandon </p>
+                    </div>
                 </div>
             </div>
-            <div class="col-3 align-self-center text-center">
-                <div class="circle-singleline m-auto">
-                    B
-                </div>
-                <div class="mt-1">
-                    <p> Brandon </p>
-                </div>
-            </div>
         </div>
-
 
        
         
