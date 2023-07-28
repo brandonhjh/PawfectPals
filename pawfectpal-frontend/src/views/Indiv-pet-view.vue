@@ -1,6 +1,6 @@
 <template lang="html">
     <div class="container-fluid p-0" >
-        <div class="row mt-3 mx-2 pt-2 rounded-top-3" id="green-banner">
+        <div class="row mt-3 mx-3 pt-2 rounded-top-3" id="green-banner">
             <div class="col-4 text-center">
                 <img src="https://images.squarespace-cdn.com/content/v1/58b4791ad2b857c893179e34/1537971642021-LHW76T7O8JG0M4GLTSTP/IMG_2818.jpg?format=1000w" class="w-75 rounded-circle ps-2">
             </div>
@@ -18,7 +18,7 @@
             </div>
 
         </div>
-        <div class="mx-2 p-3 pb-0 mb-5 rounded-bottom-3" id="green-banner">
+        <div class="mx-3 p-3 pb-0 mb-5 rounded-bottom-3" id="green-banner">
             <div class="bg-white rounded p-3">
                 <div class="row m-0">
                     <div id="font-dark-green" class="col-8 my-auto mx-auto p-2 mt-3 border rounded-start-3 border-muted "> Birthday </div>

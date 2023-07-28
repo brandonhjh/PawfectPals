@@ -1,13 +1,13 @@
 <template lang="html">
     <div class="container-fluid p-0">
-        <div class="mx-2 mt-3 mb-5 rounded-3" id="green-banner">
+        <div class="mx-3 mt-3 mb-5 rounded-3" id="green-banner">
             <div class="row mx-auto pt-2">
                 <div class="col-4 text-center">
                     <img src="https://images.squarespace-cdn.com/content/v1/58b4791ad2b857c893179e34/1537971642021-LHW76T7O8JG0M4GLTSTP/IMG_2818.jpg?format=1000w" class="w-75 rounded-circle ps-2">
                 </div>
                 
                 <div class="col-8 ps-0 pt-1">
-                    <div class="text-start ">
+                    <div class="text-start">
                         <h3><b>Leo</b></h3>
                     </div>
                     <div class="row">
