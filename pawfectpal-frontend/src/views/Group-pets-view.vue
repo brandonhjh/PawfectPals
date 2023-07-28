@@ -22,9 +22,9 @@
         </div>
         <div class = "row">
             <div class="col">
-                <div class="position-absolute start-50 translate-middle mt-2">
-                    <img data-v-391f24cb="" src="/img/plus-circle.2992868b.svg" alt="" class="fill-success">
-                    <small class="ps-1" @click="goToAddPet">Add Pet</small> 
+                <div class="position-absolute start-50 translate-middle mt-2" @click="goToAddPet">
+                    <img data-v-391f24cb="" src="../assets/plus-circle-black.svg" alt="" class="fill-success">
+                    <small class="ps-1">Add Pet</small> 
                 </div>
             </div>
         </div>
