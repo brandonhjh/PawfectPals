@@ -4,87 +4,30 @@ const cors = require('cors');
 const firebase = require('firebase/app');
 require('firebase-admin/database');
 
+const groupRoutes = require('./routes/groupRoutes');
+// const petRoutes = require('./petRoutes');
+// const taskRoutes = require('./taskRoutes');
+
 const { getDatabase, onValue, ref, set: databaseSet, push, set, child } = require('firebase-admin/database');
 const { executeQueries, addDataToFirebase } = require('./firebaseData');
 
-const { auth } = require('./firebaseIndex');
+// const { auth } = require('./firebaseIndex');
 const { getAuth, verifyIdToken } = require("firebase-admin/auth");
 const admin = require("firebase-admin");
-
+const { authenticateUser } = require('./middleware/authentication')
 const { getIdToken } = require('firebase/auth');
 
-const verifyToken = async (idToken) => {
-  try {
-    const decodedToken = await auth.verifyIdToken(idToken);
-    const { aud, iss } = decodedToken;
+import { initializeApp } from "firebase-admin/app";
 
-    // Verify the audience and issuer values
-    const projectId = 'pawfect-pals-da18a';
-    const expectedAudience = 'pawfect-pals-da18a';
-    const expectedIssuer = `https://securetoken.google.com/${projectId}`;
-    console.log(`expectedAudience: ${expectedAudience}`);
-    console.log(`expectedIssuer: ${expectedIssuer}`);
-    console.log(`aud: ${aud}`);
-    console.log(`iss: ${iss}`);
-    console.log(JSON.stringify(idToken, null, 2));
-    console.log(decodedToken);
+const serviceAccount = require("./config/serviceAccountKey.json");
 
-
-    if (aud !== expectedAudience || iss !== expectedIssuer) {
-      console.error('Invalid audience or issuer');
-      return;
-    }
-
-    // Audience and issuer are valid
-    console.log('Audience and issuer are valid');
-  } catch (error) {
-    console.error('Error verifying ID token:', error);
-  }
-};
-
-
-// Provide a valid ID token here
-const idToken = 'eyJhbGciOiJSUzI1NiIsImtpZCI6ImIyZGZmNzhhMGJkZDVhMDIyMTIwNjM0OTlkNzdlZjRkZWVkMWY2NWIiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcGF3ZmVjdC1wYWxzLWRhMThhIiwiYXVkIjoicGF3ZmVjdC1wYWxzLWRhMThhIiwiYXV0aF90aW1lIjoxNjkwMTk1MjA3LCJ1c2VyX2lkIjoiUUlxdFJJWG9aNVpzOGlSQUtxdU1mSE9sZUh6MSIsInN1YiI6IlFJcXRSSVhvWjVaczhpUkFLcXVNZkhPbGVIejEiLCJpYXQiOjE2OTAxOTUyMDcsImV4cCI6MTY5MDE5ODgwNywiZW1haWwiOiJxaWppZUB0ZXN0LmNvbSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJlbWFpbCI6WyJxaWppZUB0ZXN0LmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6InBhc3N3b3JkIn19.Go9s-gk_zHCz7kJ7DPQgoSF_EbdPP7VpvpkT_3yzMnOGf-FZRpwskm8HAHK20vLLruLImkUo8J9w6e5TuRHLXEKf7p4Q0uzpWQH1r4DytAcMdiVA-H404WE8FutqwLwAAyP8MwiC0i3tYTwMe2UvfL9xU6fXcf4Jk7Kz-HU1fZ3bdoZP3zqCl0RijWhXXs59bgJWA6X9jPgNLOZl2_HcsMGp1BY1KozUOiRThU0CY-PJ3PhwbyOnrgMH68s7b2AlzxsTp1YZ3EFNmHZppEeiGx0FQRcnDnrWyKzbddE8rKfs3SVs5UnNTP25SMk0VWG9LZ7yiLDMUJ9boZTcdIMG6g';
-verifyToken(idToken);
-
-/*
-////////////////////////////////////////////
-
-// send id token in the browser
-const response = await fetch(GetCookieUrl, {
-  headers: new Headers({
-    'Authorization': `Bearer ${idToken}`
-  })
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://pawfect-pals-da18a-default-rtdb.asia-southeast1.firebasedatabase.app"
 });
 
-// verify the id token on the server
-const idToken = req.header('Authorization')?.split('Bearer ')?.[1];
-const decodedIdToken = await verifyIdToken(idToken, checkRevoked);
+const auth = admin.auth();
 
-/////////////////////////////////////////////
-
-// get the id token in the browser
-const idToken = await getIdToken(auth.currentUser);
-const response = await fetch(getCookieUrl, {
-  headers: new Headers({
-    'Authorization': `Bearer ${idToken}`
-  })
-});
-
-// verify the id token on the server
-const cookie = await adminAuth.createSessionCookie(idToken);
-res.cookie('__session', cookie, options)
-
-// validate a cookie on the server
-const cookies = cookie.parse(req.headers.cookie);
-const { __session } = cookies;
-const { uid } = await adminAuth.verifySessionCookie(__session);
-
-/////////////////////////////////////////////
-*/
-
-// Initialize Firebase
-// const auth = getAuth(app);
 
 const app = express();
 
@@ -115,31 +58,7 @@ app.get('/', (req, res) => {
 
 // addDataToFirebase(database);
 
-// Middleware to enable authentication for protected routes
-const authenticateUser = (req, res, next) => {
-  const { authorization } = req.headers;
-
-  console.log(req.headers);
-  if (!authorization || !authorization.startsWith('Bearer ')) {
-    console.log('No ID token provided');
-    res.status(401).json({ error: 'Unauthorized' });
-    return;
-  }
-
-  const idToken = authorization.split('Bearer ')[1];
-  console.log(idToken);
-
-  auth.verifyIdToken(idToken).then((decodedToken) => {
-      console.log('ID token verified:', decodedToken);
-      req.user = decodedToken;
-      next();
-    })
-    .catch((error) => {
-      console.error('Error verifying ID token:', error);
-      res.status(401).json({ error: 'Unauthorized' });
-    });
-};
-
+/*
 // Example usage of the middleware
 app.get("/protected-route", authenticateUser, (req, res) => {
   // If the code execution reaches here, the user is authenticated
@@ -173,18 +92,18 @@ app.get('/GET/api/pet', authenticateUser, (req, res) => {
   });
 });
 
-// GET GROUPS from the database
-app.get('/GET/api/groups', authenticateUser, (req, res) => {
-  const userId = req.user.uid;
-  const groupsRef = database.ref(`groups/${userId}`);
-  groupsRef.on('value', (snapshot) => {
-    const groups = snapshot.val();
-    res.json(groups);
-  }, (error) => {
-    console.error('Error fetching groups:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  });
-});
+// // GET GROUPS from the database
+// app.get('/GET/api/groups', authenticateUser, (req, res) => {
+//   const userId = req.user.uid;
+//   const groupsRef = database.ref(`groups/${userId}`);
+//   groupsRef.on('value', (snapshot) => {
+//     const groups = snapshot.val();
+//     res.json(groups);
+//   }, (error) => {
+//     console.error('Error fetching groups:', error);
+//     res.status(500).json({ error: 'Internal Server Error' });
+//   });
+// });
 
 // POST TASK to the database
 app.post('/POST/api/addTask', authenticateUser, (req, res) => {
@@ -222,22 +141,22 @@ app.post('/POST/api/addPet', authenticateUser, (req, res) => {
     });
 });
 
-// POST GROUPS to the database
-app.post('/POST/api/addGroups', authenticateUser, (req, res) => {
-  const userId = req.user.uid;
-  const { groupKey, groupData } = req.body;
-  const groupsRef = database.ref(`groups/${userId}`);
-  const groupRef = groupsRef.child(groupKey); // Use child method to get a reference to the groupKey
+// // POST GROUPS to the database
+// app.post('/POST/api/addGroups', authenticateUser, (req, res) => {
+//   const userId = req.user.uid;
+//   const { groupKey, groupData } = req.body;
+//   const groupsRef = database.ref(`groups/${userId}`);
+//   const groupRef = groupsRef.child(groupKey); // Use child method to get a reference to the groupKey
   
-  groupRef.set(groupData)
-    .then(() => {
-      res.json({ message: 'Group created successfully' });
-    })
-    .catch((error) => {
-      console.error('Error creating group:', error);
-      res.status(500).json({ error: 'Internal Server Error' });
-    });
-});
+//   groupRef.set(groupData)
+//     .then(() => {
+//       res.json({ message: 'Group created successfully' });
+//     })
+//     .catch((error) => {
+//       console.error('Error creating group:', error);
+//       res.status(500).json({ error: 'Internal Server Error' });
+//     });
+// });
 
 // PUT EDIT PET in the database
 app.put('/PUT/api/editPet/:petName', authenticateUser, (req, res) => {
@@ -258,22 +177,28 @@ app.put('/PUT/api/editPet/:petName', authenticateUser, (req, res) => {
 });
 
 
-// PUT JOIN GROUP in the database
-app.put('/PUT/api/joinGroup/:groupId', authenticateUser, (req, res) => {
-  const userId = req.user.uid;
-  const groupId = req.params.groupId;
-  const { username } = req.body;
-  const groupUserRef = database.ref(`groups/${groupId}/${userId}`);
+// // PUT JOIN GROUP in the database
+// app.put('/PUT/api/joinGroup/:groupId', authenticateUser, (req, res) => {
+//   const userId = req.user.uid;
+//   const groupId = req.params.groupId;
+//   const { username } = req.body;
+//   const groupUserRef = database.ref(`groups/${groupId}/${userId}`);
 
-  groupUserRef.update({ [username]: true })
-    .then(() => {
-      res.json({ message: 'User joined the group successfully' });
-    })
-    .catch((error) => {
-      console.error('Error joining the group:', error);
-      res.status(500).json({ error: 'Internal Server Error' });
-    });
-});
+//   groupUserRef.update({ [username]: true })
+//     .then(() => {
+//       res.json({ message: 'User joined the group successfully' });
+//     })
+//     .catch((error) => {
+//       console.error('Error joining the group:', error);
+//       res.status(500).json({ error: 'Internal Server Error' });
+//     });
+// });
+*/
+
+// Mount the route handlers
+app.use('/', groupRoutes);
+// app.use('/', petRoutes);
+// app.use('/', taskRoutes);
 
 const port = 3000;
 app.listen(port, () => {
@@ -284,3 +209,5 @@ app.use((err, req, res, next) => {
   console.error('Uncaught Error:', err);
   res.status(500).json({ error: err.message });
 });
+
+module.exports = database;
