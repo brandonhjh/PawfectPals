@@ -24,7 +24,7 @@
         <div class="position-absolute start-50 translate-middle mt-2">
           <img
             data-v-391f24cb=""
-            src="/img/plus-circle.2992868b.svg"
+            src="../assets/plus-circle-black.svg"
             alt=""
             class=""
           />
