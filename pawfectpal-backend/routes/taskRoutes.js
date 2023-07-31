@@ -1,13 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const { authenticateUser } = require('../middleware/authentication');
-const database = require('../server');
-
+const database = require('../config/database');
 
 // GET TASK from the database
 router.get('/GET/api/task', authenticateUser, (req, res) => {
   const userId = req.user.uid;
-  console.log(userId);
   const tasksRef = database.ref(`tasks/${userId}`);
   tasksRef.on('value', (snapshot) => {
     const tasks = snapshot.val();

@@ -4,8 +4,8 @@ const { authenticateUser } = require('../middleware/authentication');
 const database = require('../config/database');
 
 // GET GROUPS from the database
-router.get('/', (req, res) => {
-  const userId = "test"
+router.get('/GET/api/groups', authenticateUser, (req, res) => {
+  const userId = req.user.uid;
   const groupsRef = database.ref(`groups`);
   groupsRef.on('value', (snapshot) => {
     const groups = snapshot.val();

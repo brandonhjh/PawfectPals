@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { authenticateUser } = require('../middleware/authentication');
-const database = require('../server');
-
+const database = require('../config/database');
 
 // GET PET from the database
 router.get('/GET/api/pet', authenticateUser, (req, res) => {
