@@ -1,32 +1,28 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const firebase = require('firebase/app');
-require('firebase-admin/database');
-
 const groupRoutes = require('./routes/groupRoutes');
+
+// import database from config
+const database = require('./config/database');
+
+// const firebase = require('firebase/app');
 // const petRoutes = require('./petRoutes');
 // const taskRoutes = require('./taskRoutes');
-
-const { getDatabase, onValue, ref, set: databaseSet, push, set, child } = require('firebase-admin/database');
-const { executeQueries, addDataToFirebase } = require('./firebaseData');
-
+// const { getDatabase, onValue, ref, set: databaseSet, push, set, child } = require('firebase-admin/database');
+// const { executeQueries, addDataToFirebase } = require('./firebaseData');
 // const { auth } = require('./firebaseIndex');
-const { getAuth, verifyIdToken } = require("firebase-admin/auth");
-const admin = require("firebase-admin");
-const { authenticateUser } = require('./middleware/authentication')
-const { getIdToken } = require('firebase/auth');
-
-import { initializeApp } from "firebase-admin/app";
-
-const serviceAccount = require("./config/serviceAccountKey.json");
-
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://pawfect-pals-da18a-default-rtdb.asia-southeast1.firebasedatabase.app"
-});
-
-const auth = admin.auth();
+// const { getAuth, verifyIdToken } = require("firebase-admin/auth");
+// const admin = require("firebase-admin");
+// const { authenticateUser } = require('./middleware/authentication')
+// const { getIdToken } = require('firebase/auth');
+// import { initializeApp } from "firebase-admin/app";
+// const serviceAccount = require("./config/serviceAccountKey.json");
+// admin.initializeApp({
+//   credential: admin.credential.cert(serviceAccount),
+//   databaseURL: "https://pawfect-pals-da18a-default-rtdb.asia-southeast1.firebasedatabase.app"
+// });
+// const auth = admin.auth();
 
 
 const app = express();
@@ -35,24 +31,38 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // Your Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyAbp9cWuGC7WDSt7Q19hwDuwUVEe6YHs4Q",
-  authDomain: "pawfect-pals-da18a.firebaseapp.com",
-  databaseURL: "https://pawfect-pals-da18a-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "pawfect-pals-da18a",
-  storageBucket: "pawfect-pals-da18a.appspot.com",
-  messagingSenderId: "458110592532",
-  appId: "1:458110592532:web:13da8b1eab5a6b6a6ea901",
-  measurementId: "G-WGJQ48HVDL",
-};
+// const firebaseConfig = {
+//   apiKey: "AIzaSyAbp9cWuGC7WDSt7Q19hwDuwUVEe6YHs4Q",
+//   authDomain: "pawfect-pals-da18a.firebaseapp.com",
+//   databaseURL: "https://pawfect-pals-da18a-default-rtdb.asia-southeast1.firebasedatabase.app",
+//   projectId: "pawfect-pals-da18a",
+//   storageBucket: "pawfect-pals-da18a.appspot.com",
+//   messagingSenderId: "458110592532",
+//   appId: "1:458110592532:web:13da8b1eab5a6b6a6ea901",
+//   measurementId: "G-WGJQ48HVDL",
+// };
 
-firebase.initializeApp(firebaseConfig);
+// firebase.initializeApp(firebaseConfig);
 
 // const database = getDatabase();
-const database = admin.database();
+// const database = admin.database();
 
+// 
 app.get('/', (req, res) => {
-  res.send('Hello, world! testing');
+  const groupsRef = database.ref('groups');
+
+groupsRef.once('value')
+  .then((snapshot) => {
+    const groupsData = snapshot.val();
+    res.send(groupsData)
+  })
+  .catch((error) => {
+    console.error('Error retrieving data:', error);
+    // Handle any errors that may occur during the data retrieval process.
+  });
+  // res.send('Hello, world! testing');
+
+
 });
 
 
@@ -196,9 +206,11 @@ app.put('/PUT/api/editPet/:petName', authenticateUser, (req, res) => {
 */
 
 // Mount the route handlers
-app.use('/', groupRoutes);
+app.use('/api/group', groupRoutes);
 // app.use('/', petRoutes);
 // app.use('/', taskRoutes);
+
+
 
 const port = 3000;
 app.listen(port, () => {
@@ -210,4 +222,4 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: err.message });
 });
 
-module.exports = database;
+// module.exports = database;
