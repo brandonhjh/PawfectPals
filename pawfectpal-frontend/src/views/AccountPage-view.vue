@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="container my-5" >
+  <div class="container my-5 " >
     <div class="row mt-2 p-2">
       <div class="col display-5 text-center">
         Profile
@@ -17,11 +17,20 @@
         </div>
       </div>
 
-      <div class="row m-auto mb-5 pb-5">
+      <div class="row m-auto mb-3">
         <div class="col">
           <label for="groupName" class="form-label">Email:</label>
             <div id="font-dark-green" class="my-1 mx-auto p-2 bg-white border rounded-3 border-muted">
                 jared@gmail.com
+            </div>
+        </div>
+      </div>
+
+      <div class="row m-auto mb-5 pb-5">
+        <div class="col">
+          <label for="groupName" class="form-label">Password:</label>
+            <div id="font-dark-green" class="my-1 mx-auto p-2 bg-white border rounded-3 border-muted">
+                jared2345
             </div>
         </div>
       </div>
@@ -30,8 +39,8 @@
         
       
   </div>
-  <div class="container mt-3 pt-3">
-          <div class="row mt-4 pt-4">
+  <div class="container mt-2 mb-4 pb-4 pt-2">
+          <div class="row mt-1 pt-1">
             <div class="col"></div>
           
               <button
