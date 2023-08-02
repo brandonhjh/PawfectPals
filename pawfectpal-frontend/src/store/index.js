@@ -5,27 +5,36 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-} from "firebase/auth";
+} from "firebase/auth"; 
 
 export default createStore({
-  state: {
-    user: null,
+  state() {
+    return {
+      user: null,
+      idToken: null,
+    };
   },
   mutations: {
-    SET_USER(state, user) {
+    SET_USER(state, { user, idToken }) {
       state.user = user;
+      state.idToken = idToken;
     },
 
     CLEAR_USER(state) {
       state.user = null;
+      state.idToken = null;
     },
   },
+
   actions: {
     async login({ commit }, details) {
       const { email, password } = details;
 
       try {
-        await signInWithEmailAndPassword(auth, email, password);
+        const { user } = await signInWithEmailAndPassword(auth, email, password);
+        const idToken = await user.getIdToken(true);
+        commit("SET_USER", { user, idToken });
+        router.push("/");
       } catch (error) {
         switch (error.code) {
           case "auth/user-not-found":
@@ -37,17 +46,17 @@ export default createStore({
           default:
             alert("Something went wrong");
         }
-        return;
       }
-      commit("SET_USER", auth.currentUser);
-
-      router.push("/");
     },
+
     async register({ commit }, details) {
       const { email, password } = details;
 
       try {
-        await createUserWithEmailAndPassword(auth, email, password);
+        const { user } = await createUserWithEmailAndPassword(auth, email, password);
+        const idToken = await user.getIdToken(true);
+        commit("SET_USER", { user, idToken });
+        router.push("/");
       } catch (error) {
         switch (error.code) {
           case "auth/email-already-in-use":
@@ -65,17 +74,12 @@ export default createStore({
           default:
             alert("Something went wrong");
         }
-        return;
       }
-      commit("SET_USER", auth.currentUser);
-
-      router.push("/");
     },
+
     async logout({ commit }) {
       await signOut(auth);
-
       commit("CLEAR_USER");
-
       router.push("/login");
     },
 
@@ -84,7 +88,8 @@ export default createStore({
         if (user === null) {
           commit("CLEAR_USER");
         } else {
-          commit("SET_USER", user);
+          const idToken = await user.getIdToken(true);
+          commit("SET_USER", { user, idToken });
 
           if (router.isReady() && router.currentRoute.value.path === "/login") {
             router.push("/");
