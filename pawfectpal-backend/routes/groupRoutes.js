@@ -6,7 +6,7 @@ const database = require('../config/database');
 // GET GROUPS from the database
 router.get('/GET/api/groups', authenticateUser, (req, res) => {
   const userId = req.user.uid;
-  const groupsRef = database.ref(`groups`);
+  const groupsRef = database.ref(`groups/${userId}`);
   groupsRef.on('value', (snapshot) => {
     const groups = snapshot.val();
     res.json(groups);
@@ -31,7 +31,7 @@ router.post('/POST/api/addGroups', authenticateUser, (req, res) => {
       console.error('Error creating group:', error);
       res.status(500).json({ error: 'Internal Server Error' });
     });
-});
+}); 
 
 // PUT JOIN GROUP in the database
 router.put('/PUT/api/joinGroup/:groupId', authenticateUser, (req, res) => {
