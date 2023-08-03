@@ -5,7 +5,7 @@ const authenticateUser = (req, res, next) => {
   const { authorization } = req.headers;
   if (!authorization || !authorization.startsWith('Bearer ')) {
     console.log('No ID token provided');
-    return res.status(401).json({ error: 'Unauthorized' });
+    return res.status(401).json({ error: 'Unauthorized1' });
   }
 
   const idToken = authorization.split('Bearer ')[1];
@@ -17,7 +17,7 @@ const authenticateUser = (req, res, next) => {
     })
     .catch((error) => {
       console.error('Error verifying ID token:', error);
-      res.status(401).json({ error: 'Unauthorized' });
+      res.status(401).json({ error: 'Unauthorized2' });
     });
 };
 
