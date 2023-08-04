@@ -52,7 +52,7 @@ export default {
             petBirthday: "",
             petAge: "",
             petBreed: "",
-            //petGroup: "",
+            petGroup: "",
             petRemarks: "",
         };
     },
