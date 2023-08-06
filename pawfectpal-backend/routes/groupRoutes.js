@@ -3,6 +3,7 @@
 // //const { authenticateUser } = require('../middleware/authentication');
 // const database = require('../config/database');
 
+
 // // GET GROUPS from the database
 // router.get('/GET/api/groups', authenticateUser, (req, res) => {
 //   const userId = req.user.uid;
@@ -15,6 +16,7 @@
 //     res.status(500).json({ error: 'Internal Server Error' });
 //   });
 // });
+
 
 // // POST GROUPS to the database
 // router.post('/POST/api/addGroups', authenticateUser, (req, res) => {
@@ -40,7 +42,7 @@
 // //   const { groupKey, groupData } = req.body;
 // //   const groupsRef = database.ref(`groups/${userId}`);
 // //   const groupRef = groupsRef.child(groupKey); // Use child method to get a reference to the groupKey
-  
+ 
 // //   groupRef.set(groupData)
 // //     .then(() => {
 // //       res.json({ message: 'Group created successfully' });

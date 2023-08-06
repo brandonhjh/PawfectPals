@@ -20,7 +20,6 @@
                 <select v-model="petGroup" class="form-select" id="petGroup">
                     <option selected>-No Group-</option>
                     <option value="Home">Home</option>
-                    <option value="Aunt">Aunt</option>
                 </select>
             </div>
             <div class="mb-3">
@@ -36,8 +35,11 @@
                         Pet</button>
                 </div>
             </div>
+
         </div>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -88,3 +90,4 @@ export default {
 </script>
 
 <style lang="css">/* Your custom styles if needed */</style>
+
