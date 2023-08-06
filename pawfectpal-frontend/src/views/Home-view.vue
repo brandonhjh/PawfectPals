@@ -23,6 +23,7 @@
       </div>
     </div>
 
+    <!--Rows of tasks-->
     <div id="green-banner" class="row m-1 py-1 rounded-3">
       <div class="col-2 align-self-center">8:00</div>
       <div class="col-2 align-self-center text-center">
@@ -52,6 +53,7 @@
         </div>
       </div>
     </div>
+    
   </div>
 </template>
 <script>
