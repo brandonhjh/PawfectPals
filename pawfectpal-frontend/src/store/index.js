@@ -5,19 +5,21 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-} from "firebase/auth"; 
+} from "firebase/auth";
 
 export default createStore({
   state() {
     return {
       user: null,
       idToken: null,
+      creationTime: null,
     };
   },
   mutations: {
     SET_USER(state, { user, idToken }) {
       state.user = user;
       state.idToken = idToken;
+      state.creationTime = user.metadata.creationTime;
     },
 
     CLEAR_USER(state) {
@@ -31,7 +33,11 @@ export default createStore({
       const { email, password } = details;
 
       try {
-        const { user } = await signInWithEmailAndPassword(auth, email, password);
+        const { user } = await signInWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
         const idToken = await user.getIdToken(true);
         commit("SET_USER", { user, idToken });
         router.push("/");
@@ -53,7 +59,11 @@ export default createStore({
       const { email, password } = details;
 
       try {
-        const { user } = await createUserWithEmailAndPassword(auth, email, password);
+        const { user } = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
         const idToken = await user.getIdToken(true);
         commit("SET_USER", { user, idToken });
         router.push("/");
