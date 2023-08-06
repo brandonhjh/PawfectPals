@@ -12,11 +12,11 @@
       :key="pet.PetName"
       id="green-banner"
       class="row m-1 mb-3 rounded"
-      @click="goToIndivPet(pet.PetName)" 
+      @click="goToIndivPet(pet.PetName)"
     >
       <div class="col-3 align-self-center text-center">
         <img
-          src="https://images.squarespace-cdn.com/content/v1/58b4791ad2b857c893179e34/1537971642021-LHW76T7O8JG0M4GLTSTP/IMG_2818.jpg?format=1000w" 
+          src="https://images.squarespace-cdn.com/content/v1/58b4791ad2b857c893179e34/1537971642021-LHW76T7O8JG0M4GLTSTP/IMG_2818.jpg?format=1000w"
           class="w-75 rounded-circle py-3"
         />
         <br />
@@ -35,11 +35,9 @@
             alt=""
             class=""
           />
-          <small
-            id="font-dark-green"
-            class="ps-1"
-            @click="goToAddPet"
-          >Add New Pet</small>
+          <small id="font-dark-green" class="ps-1" @click="goToAddPet"
+            >Add New Pet</small
+          >
         </div>
       </div>
     </div>
@@ -64,7 +62,7 @@ export default {
     },
     goToIndivPet(petName) {
       console.log("otw to indiv pet", petName);
-      this.$router.push("/indivPetView");
+      this.$router.push({ name: "IndivPetView", params: { petName } });
     },
   },
   created() {
