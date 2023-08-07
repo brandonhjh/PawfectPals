@@ -64,7 +64,7 @@ export default {
                 Birthday: this.petBirthday,
                 Age: this.petAge,
                 Breed: this.petBreed,
-                //Group: this.petGroup,
+                Group: this.petGroup,
                 Remarks: this.petRemarks,
             };
 
