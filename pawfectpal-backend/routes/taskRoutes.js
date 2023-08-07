@@ -48,4 +48,26 @@ router.post('/POST/api/addTask', (req, res) => {
     });
 });
 
+// // PUT TASK to update CheckedCompleted status
+// router.put('/PUT/api/task/:title', (req, res) => {
+//   const title = req.params.title; // Assuming you use Title as the key
+//   const newCheckedCompleted = req.body.CheckedCompleted;
+
+//   if (newCheckedCompleted === undefined) {
+//     return res.status(400).json({ error: 'CheckedCompleted value is required' });
+//   }
+
+//   const tasksRef = database.ref('tasks');
+
+//   // Update the CheckedCompleted status
+//   tasksRef.child(title).update({ CheckedCompleted: newCheckedCompleted })
+//     .then(() => {
+//       return res.json({ message: 'Task updated successfully', title: title });
+//     })
+//     .catch((error) => {
+//       console.error('Error updating task:', error);
+//       return res.status(500).json({ error: 'Internal Server Error' });
+//     });
+// });
+
 module.exports = router;

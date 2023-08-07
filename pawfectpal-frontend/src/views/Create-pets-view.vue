@@ -23,7 +23,7 @@
                 </select>
             </div>
             <div class="mb-3">
-                <label class="form-label ps-1">Special Remarks</label>
+                <label class="form-label ps-1">Description</label>
                 <textarea v-model="petRemarks" class="form-control" id="petRemarks" rows="3"></textarea>
             </div>
         </div>
@@ -37,9 +37,7 @@
             </div>
 
         </div>
-      </div>
     </div>
-  </div>
 </template>
 
 <script>

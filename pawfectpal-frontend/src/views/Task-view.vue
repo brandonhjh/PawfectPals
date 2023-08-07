@@ -29,14 +29,6 @@
             <option v-for="pet in pets" :key="pet" :value="pet">{{ pet }}</option>
           </select>
         </div>
-        <div class="input-group mb-3">
-          <label class="input-group-text"><img src="../assets/people.svg" alt="" class="pe-2">People</label>
-          <select v-model="taskData.Member" class="form-select" id="taskMember">
-            <option selected>--</option>
-            <option value="Eaint">Eaint</option>
-            <option value="Justin">Justin</option>
-          </select>
-        </div>
         <div class="row mb-3 ">
           <div class="col-6 form-group ">
             <label for="exampleInput2" class="mx-1 px-1" > Date </label>
@@ -79,10 +71,10 @@
           Title: "",
           Notes: "",
           Pet: null,
-          //Member: "--",
           Date: "2023-01-01",
           Time: "00:00",
           Calendar: false,
+          CheckedCompleted: false,
         },
         pets: [],
       };
