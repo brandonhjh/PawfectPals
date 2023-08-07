@@ -2,7 +2,7 @@
   <div class="container mt-4">
     <div class="row mx-1">
       <div class="col-4 px-1">
-        <!-- Display selected date in the format "14 Aug, 2023" -->
+        <!-- Display selected date in the format "14 Aug" -->
         <h1 id="font-dark-green" class="display-1 formatted-date">{{ formattedSelectedDate }}</h1>
       </div>
       <div class="col-5 align-self-end p-0">
@@ -60,7 +60,7 @@ export default {
       return this.currentDate.toLocaleDateString("en-US", options);
     },
     formattedSelectedDate() {
-      const dateOptions = { day: "numeric", month: "short", year: "numeric" };
+      const dateOptions = { day: "numeric", month: "short"};
       const date = new Date(this.selectedDate);
       return date.toLocaleDateString("en-US", dateOptions);
     },
@@ -102,7 +102,7 @@ export default {
 
 <style lang="css">
 .formatted-date {
-  font-size: 50px;
+  font-size: 30px;
   /* font size for the date text at the top */
 }
 
