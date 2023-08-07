@@ -1,45 +1,46 @@
 <template lang="html">
     <div class="container mt-4">
-        <div id="green-banner" class="row mx-1 rounded-top">
-            <img src="https://images.squarespace-cdn.com/content/v1/58b4791ad2b857c893179e34/1537971642021-LHW76T7O8JG0M4GLTSTP/IMG_2818.jpg?format=1000w"
-                class="mx-auto p-3 w-50 rounded-circle" />
+        <div class="scrollable-content">
+            <div id="green-banner" class="row mx-1 rounded-top">
+                <img src="https://images.squarespace-cdn.com/content/v1/58b4791ad2b857c893179e34/1537971642021-LHW76T7O8JG0M4GLTSTP/IMG_2818.jpg?format=1000w"
+                    class="mx-auto p-3 w-50 rounded-circle" />
+            </div>
+            <div id="green-banner" class="row mx-1 mb-2">
+                <div class="input-group mb-3">
+                    <input v-model="petName" type="text" class="form-control" id="PetName" placeholder="Pet Name" />
+                </div>
+                <div class="input-group mb-3">
+                    <input v-model="petBirthday" type="text" class="form-control" id="petBirthday"
+                        placeholder="Birthday (dd/mm/yy)" />
+                    <input v-model="petAge" type="text" class="form-control input-space" placeholder="Age" />
+                </div>
+                <div class="input-group mb-3">
+                    <input v-model="petBreed" type="text" class="form-control" id="petBreed" placeholder="Breed" />
+                </div>
+                <div class="input-group mb-3">
+                    <input v-model="petWeight" type="text" class="form-control" id="petBreed" placeholder="Weight" />
+                </div>
+                <div class="input-group mb-3">
+                    <input v-model="petMedication" type="text" class="form-control" id="petMedication"
+                        placeholder="Medication" />
+                </div>
+                <div class="input-group mb-3">
+                    <input v-model="petCheckUp" type="text" class="form-control" id="petCheckUp"
+                        placeholder="Last Check Up (dd/mm/yy)" />
+                </div>
+                <div class="input-group mb-3">
+                    <label class="input-group-text"><img src="../assets/people.svg" alt="" class="pe-2" />Group</label>
+                    <select v-model="petGroup" class="form-select" id="petGroup">
+                        <option selected>-No Group-</option>
+                        <option value="Home">Home</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label ps-1">Description</label>
+                    <textarea v-model="petRemarks" class="form-control" id="petRemarks" rows="2"></textarea>
+                </div>
+            </div>
         </div>
-        <div id="green-banner" class="row mx-1 mb-2">
-            <div class="input-group mb-3">
-                <input v-model="petName" type="text" class="form-control" id="PetName" placeholder="Pet Name" />
-            </div>
-            <div class="input-group mb-3">
-                <input v-model="petBirthday" type="text" class="form-control" id="petBirthday"
-                    placeholder="Birthday (dd/mm/yy)" />
-                <input v-model="petAge" type="text" class="form-control input-space" placeholder="Age" />
-            </div>
-            <div class="input-group mb-3">
-                <input v-model="petBreed" type="text" class="form-control" id="petBreed" placeholder="Breed" />
-            </div>
-            <div class="input-group mb-3">
-                <input v-model="petWeight" type="text" class="form-control" id="petBreed" placeholder="Weight" />
-            </div>
-            <div class="input-group mb-3">
-                <input v-model="petMedication" type="text" class="form-control" id="petMedication"
-                    placeholder="Medication" />
-            </div>
-            <div class="input-group mb-3">
-                <input v-model="petCheckUp" type="text" class="form-control" id="petCheckUp"
-                    placeholder="Last Check Up (dd/mm/yy)" />
-            </div>
-            <div class="input-group mb-3">
-                <label class="input-group-text"><img src="../assets/people.svg" alt="" class="pe-2" />Group</label>
-                <select v-model="petGroup" class="form-select" id="petGroup">
-                    <option selected>-No Group-</option>
-                    <option value="Home">Home</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label class="form-label ps-1">Description</label>
-                <textarea v-model="petRemarks" class="form-control" id="petRemarks" rows="3"></textarea>
-            </div>
-        </div>
-
         <div class="row">
             <div class="col">
                 <div class="position-absolute start-50 translate-middle my-4">
@@ -106,5 +107,8 @@ export default {
 </script>
 
 <style lang="css">
-/* Your custom styles if needed */
+.scrollable-content {
+    overflow-y: auto;
+    max-height: 80vh;
+}
 </style>

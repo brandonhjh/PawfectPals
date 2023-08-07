@@ -6,38 +6,28 @@
       </div>
     </div>
 
-    <!-- Use v-for to loop through pets and display each one -->
-    <div
-      v-for="pet in pets"
-      :key="pet.PetName"
-      id="green-banner"
-      class="row m-1 mb-3 rounded"
-      @click="goToIndivPet(pet.PetName)"
-    >
-      <div class="col-3 align-self-center text-center">
-        <img
-          src="https://images.squarespace-cdn.com/content/v1/58b4791ad2b857c893179e34/1537971642021-LHW76T7O8JG0M4GLTSTP/IMG_2818.jpg?format=1000w"
-          class="w-75 rounded-circle py-3"
-        />
-        <br />
-      </div>
-      <div class="col-9 my-2 p-0 align-self-center text-start">
-        <p class="h5 mb-1 fw-normal">{{ pet.PetName }}</p>
-        <p class="m-0 fw-light">{{ pet.Remarks }}</p>
+    <div class="scrollable-content">
+      <!-- Use v-for to loop through pets and display each one -->
+      <div v-for="pet in pets" :key="pet.PetName" id="green-banner" class="row m-1 mb-3 rounded"
+        @click="goToIndivPet(pet.PetName)">
+        <div class="col-3 align-self-center text-center">
+          <img
+            src="https://images.squarespace-cdn.com/content/v1/58b4791ad2b857c893179e34/1537971642021-LHW76T7O8JG0M4GLTSTP/IMG_2818.jpg?format=1000w"
+            class="w-75 rounded-circle py-3" />
+          <br />
+        </div>
+        <div class="col-9 my-2 p-0 align-self-center text-start">
+          <p class="h5 mb-1 fw-normal">{{ pet.PetName }}</p>
+          <p class="m-0 fw-light">{{ pet.Remarks }}</p>
+        </div>
       </div>
     </div>
+
     <div class="row">
       <div class="col">
         <div class="position-absolute start-50 translate-middle mt-2">
-          <img
-            data-v-391f24cb=""
-            src="../assets/plus-circle-black.svg"
-            alt=""
-            class=""
-          />
-          <small id="font-dark-green" class="ps-1" @click="goToAddPet"
-            >Add New Pet</small
-          >
+          <img data-v-391f24cb="" src="../assets/plus-circle-black.svg" alt="" class="" />
+          <small id="font-dark-green" class="ps-1" @click="goToAddPet">Add New Pet</small>
         </div>
       </div>
     </div>
@@ -82,4 +72,9 @@ export default {
 };
 </script>
 
-<style lang="css"></style>
+<style lang="css">
+.scrollable-content {
+  overflow-y: auto;
+  max-height: 80vh;
+}
+</style>

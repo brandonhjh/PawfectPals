@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-4">
+  <div class="container mt-4 scrollable-content">
     <div class="row mx-1">
       <div class="col-4 px-1">
         <!-- Display selected date in the format "14 Aug" -->
@@ -20,25 +20,28 @@
       </div>
     </div>
 
-    <!-- Rows of tasks -->
-    <div v-for="task in tasks" :key="task.Title"
-      :class="{ 'row': true, 'm-1': true, 'py-1': true, 'rounded-3': true, 'green-banner': !task.CheckedCompleted, 'grey-banner': task.CheckedCompleted }">
-      <div class="col-2 align-self-center white-text">{{ task.Time }}</div>
-      <div class="col-2 align-self-center text-center white-text">
-        <img
-          src="https://images.squarespace-cdn.com/content/v1/58b4791ad2b857c893179e34/1537971642021-LHW76T7O8JG0M4GLTSTP/IMG_2818.jpg?format=1000w"
-          class="img-fluid rounded-circle" />
-        <br />
-        {{ task.Pet }}
-      </div>
-      <div class="col-6 my-1 align-self-center text-start white-text">{{ task.Title }}</div>
-      <div class="col-2 d-flex flex-column">
-        <div class="checkbox align-self-center m-auto">
-          <input id="task done" class="form-check-input" type="checkbox" :checked="task.CheckedCompleted"
-            @change="toggleTaskCompleted(task)" />
+    <div class="scrollable-content">
+      <!-- Rows of tasks -->
+      <div v-for="task in tasks" :key="task.Title"
+        :class="{ 'row': true, 'm-1': true, 'py-1': true, 'rounded-3': true, 'green-banner': !task.CheckedCompleted, 'grey-banner': task.CheckedCompleted }">
+        <div class="col-2 align-self-center white-text">{{ task.Time }}</div>
+        <div class="col-2 align-self-center text-center white-text">
+          <img
+            src="https://images.squarespace-cdn.com/content/v1/58b4791ad2b857c893179e34/1537971642021-LHW76T7O8JG0M4GLTSTP/IMG_2818.jpg?format=1000w"
+            class="img-fluid rounded-circle" />
+          <br />
+          {{ task.Pet }}
+        </div>
+        <div class="col-6 my-1 align-self-center text-start white-text">{{ task.Title }}</div>
+        <div class="col-2 d-flex flex-column">
+          <div class="checkbox align-self-center m-auto">
+            <input id="task done" class="form-check-input" type="checkbox" :checked="task.CheckedCompleted"
+              @change="toggleTaskCompleted(task)" />
+          </div>
         </div>
       </div>
     </div>
+
   </div>
 </template>
 
@@ -60,7 +63,7 @@ export default {
       return this.currentDate.toLocaleDateString("en-US", options);
     },
     formattedSelectedDate() {
-      const dateOptions = { day: "numeric", month: "short"};
+      const dateOptions = { day: "numeric", month: "short" };
       const date = new Date(this.selectedDate);
       return date.toLocaleDateString("en-US", dateOptions);
     },
@@ -118,5 +121,10 @@ export default {
 
 .white-text {
   color: white;
+}
+
+.scrollable-content {
+  overflow-y: auto;
+  max-height: calc(100vh - 220px);
 }
 </style>
