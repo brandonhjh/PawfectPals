@@ -2,11 +2,11 @@
   <div class="container mt-4">
     <div class="row mx-1">
       <div class="col px-1">
-        <h1 id="font-dark-green" class="display-1">All Groups</h1>
+        <h1 id="font-dark-green" class="display-1">My Group</h1>
       </div>
     </div>
 
-    <div id="green-banner" class=" row m-1 rounded-3">
+    <div id="green-banner" class="row m-1 rounded-3">
       <div class="col-7 d-flex ps-3 justify-content-left">
         <div class="d-flex align-items-center">
           <img src="../assets/house.svg" alt="" class="" />
@@ -42,18 +42,9 @@
             alt=""
             class=""
           />
-          <small id="font-dark-green" class="ps-1" @click="goToJoinGroup">Join Group</small>
-        </div>
-      </div>
-      <div class="col d-flex justify-content-center">
-        <div class="mt-2">
-          <img
-            data-v-391f24cb=""
-            src="../assets/plus-circle-black.svg"
-            alt=""
-            class=""
-          />
-          <small id="font-dark-green" class="ps-1" @click="goToCreateGroup">Create Group</small>
+          <small id="font-dark-green" class="ps-1" @click="goToJoinGroup"
+            >Join Group</small
+          >
         </div>
       </div>
     </div>
@@ -87,6 +78,4 @@ export default {
   },
 };
 </script>
-<style lang="css">
-
-</style>
+<style lang="css"></style>
