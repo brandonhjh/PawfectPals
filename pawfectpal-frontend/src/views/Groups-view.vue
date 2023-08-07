@@ -19,7 +19,7 @@
           <button
             type="button"
             class="btn rounded-pill btn-outline-light btn-sm w-100"
-            @click="goToGroupPets"
+            @click="goToAllPets"
           >
             Pets
           </button>
@@ -75,9 +75,9 @@ export default {
       this.$router.push("/joinGroup");
     },
 
-    goToGroupPets() {
-      console.log("otw to pets of group view");
-      this.$router.push("/groupPets");
+    goToAllPets() {
+      console.log("otw to all pets page");
+      this.$router.push("/pets");
     },
 
     goToGroupMember() {
