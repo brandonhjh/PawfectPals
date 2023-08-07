@@ -15,7 +15,7 @@ Introducing PawfectPals, an innovative pet-management app tailored for both anim
 
 
 ## Video Demo and Diagrams
-[User Diagram](https://drive.google.com/file/d/1tJIPy99B2bxS13KkSgOqJ0-_AePded9X/view)
+[User Diagram](https://drive.google.com/file/d/1YUgrtLZ1MxRbNo9YKAc5sddAPIsV5gOX/view?usp=sharing)
 
 [Video Demo](https://drive.google.com/file/d/1QtjaTSc7uHjb6SzcYvtzw0gPtihunwp_/view?usp=drive_link)
 
