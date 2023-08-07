@@ -96,7 +96,7 @@
       </div>
 
       <div class="row mx-auto px-3 bg-white rounded-3">
-        <p id="font-dark-green" class="py-2 m-auto">Home</p>
+        <p id="font-dark-green" class="py-2 m-auto">{{pet.Group}}</p>
       </div>
 
       <div class="row py-2">
