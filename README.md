@@ -86,6 +86,9 @@ Introducing PawfectPals, an innovative pet-management app tailored for both anim
 <li>Luxon: Library for working with dates, times, and time zones.</li>
 </ul>
 
+## Members
+Brandon, Belinda, Eaint, Jared, Qijie
+
 
 
 
