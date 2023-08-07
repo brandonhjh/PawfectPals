@@ -36,6 +36,18 @@
                 </div>
             </div>
 
+
+    <div class="row">
+      <div class="col">
+        <div class="position-absolute start-50 translate-middle my-4">
+          <button
+            type="button"
+            id="green-banner"
+            class="btn btn-outline-dark mt-2 py-1 px-2"
+            @click="addPet"
+          >
+            Add Pet
+          </button>
         </div>
     </div>
 </template>
@@ -68,24 +80,26 @@ export default {
                 Remarks: this.petRemarks,
             };
 
-            // Make a POST request to your backend route for adding pets
-            const apiUrl = "http://localhost:3000/POST/api/addPet"; // Adjust the API endpoint to match your backend route
-            axios
-                .post(apiUrl, petData)
-                .then((response) => {
-                    // Handle the response from the server
-                    console.log(response.data); // This will log the response from the backend
-                    alert("Pet added successfully!"); // You can show an alert or use a toast notification library to show a success message
-                })
-                .catch((error) => {
-                    // Handle the error from the server
-                    console.error("Error adding pet:", error);
-                    alert("Failed to add pet. Please try again."); // You can show an alert or use a toast notification library to show an error message
-                });
-        },
+
+      // Make a POST request to your backend route for adding pets
+      const apiUrl = "http://localhost:3000/POST/api/addPet"; // Adjust the API endpoint to match your backend route
+      axios
+        .post(apiUrl, petData)
+        .then((response) => {
+          // Handle the response from the server
+          console.log(response.data); // This will log the response from the backend
+          alert("Pet added successfully!"); // You can show an alert or use a toast notification library to show a success message
+        })
+        .catch((error) => {
+          // Handle the error from the server
+          console.error("Error adding pet:", error);
+          alert("Failed to add pet. Please try again."); // You can show an alert or use a toast notification library to show an error message
+        });
     },
+  },
 };
 </script>
 
-<style lang="css">/* Your custom styles if needed */</style>
-
+<style lang="css">
+/* Your custom styles if needed */
+</style>

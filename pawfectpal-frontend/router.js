@@ -78,8 +78,12 @@ const routes = [
   },
 
   {
-    path: "/indivPetView",
+    path: "/indivPetView/:petName",
     component: indivPetView,
+    name: "IndivPetView",
+    props: (route) => ({
+      pet: route.params.pet,
+    }),
   },
 
   {
@@ -106,7 +110,6 @@ const routes = [
     path: "/accountPage",
     component: AccountPage,
   },
-
 ];
 
 const router = createRouter({
