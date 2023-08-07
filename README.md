@@ -14,6 +14,11 @@ Introducing PawfectPals, an innovative pet-management app tailored for both anim
 > Note: Our application is dynamic and designed for mobile, tablets, and web applications. Best viewed on tablet dimensions.
 
 
+## Video Demo and Diagrams
+[User Diagram](https://drive.google.com/file/d/1tJIPy99B2bxS13KkSgOqJ0-_AePded9X/view)
+
+[Video Demo](https://drive.google.com/file/d/1QtjaTSc7uHjb6SzcYvtzw0gPtihunwp_/view?usp=drive_link)
+
 ## Main Features
 <ol>
 <li>Shared task list</li>
